@@ -1,0 +1,102 @@
+name: 🏷️ Setup Repository Labels
+
+# This workflow is intended to run ONCE when this template repository is first copied.
+# It creates all standard labels defined in docs/labels.md.
+# After a successful run the workflow disables itself so it won't run again.
+#
+# How to use:
+#   1. Create a new repository from this template.
+#   2. Go to Actions → "🏷️ Setup Repository Labels" → Run workflow.
+#   3. The workflow will create all labels and then disable itself automatically.
+
+on:
+  # Trigger manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  setup-labels:
+    name: Create and configure labels
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # needed for checkout
+      issues: write   # needed to create/update labels
+      actions: write  # needed to disable this workflow after setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          echo "Creating issue-type labels..."
+          gh label create "pbi" \
+            --description "Product Backlog Item: a unit of work representing a specific feature or improvement" \
+            --color "0075ca" \
+            --force
+
+          gh label create "epic" \
+            --description "Epic: a large body of work encompassing multiple PBIs toward a bigger business objective" \
+            --color "6f42c1" \
+            --force
+
+          gh label create "bug" \
+            --description "Bug: something isn't working as expected" \
+            --color "d73a4a" \
+            --force
+
+          gh label create "task" \
+            --description "Task: a child of a PBI; contributes to delivering a PBI (e.g. infrastructure, configuration, research)" \
+            --color "a2eeef" \
+            --force
+
+          echo "Creating AI-assisted labels..."
+          gh label create "ai-review" \
+            --description "AI Review: request an AI assistant to review the quality and completeness of this issue" \
+            --color "5319e7" \
+            --force
+
+          gh label create "prototype" \
+            --description "Prototype: exploratory purpose — deep NFR and backend considerations not required" \
+            --color "e4e669" \
+            --force
+
+          echo "Creating management labels..."
+          gh label create "risk" \
+            --description "Risk: identifies a risk item for the risk register; use for the 'risk' view in GitHub Projects" \
+            --color "e4700d" \
+            --force
+
+          gh label create "blocked" \
+            --description "Blocked: progress is blocked by an unresolved dependency or external factor" \
+            --color "b60205" \
+            --force
+
+          gh label create "tech-debt" \
+            --description "Technical Debt: debt deliberately taken on that needs to be addressed in a future sprint" \
+            --color "ededed" \
+            --force
+
+          echo "Creating other labels..."
+          gh label create "documentation" \
+            --description "Documentation: improvements or additions to documentation" \
+            --color "c5def5" \
+            --force
+
+          gh label create "question" \
+            --description "Question: further information is needed before this issue can proceed" \
+            --color "d876e3" \
+            --force
+
+          echo "✅ All labels created successfully."
+
+      - name: Disable this workflow after initial setup
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow disable "setup-labels.yml"
+          echo "✅ Workflow disabled. Labels are set up and this workflow will not run automatically again."
+          echo "   To recreate labels in the future, re-enable and re-run this workflow from the Actions tab."
