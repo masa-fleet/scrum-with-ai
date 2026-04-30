@@ -11,7 +11,7 @@ This document defines the standard labels used in this repository. These labels 
 | `pbi` | ![#0075ca](https://placehold.co/12x12/0075ca/0075ca.png) `#0075ca` | **Product Backlog Item** — A unit of work representing a specific feature, improvement, or change. Use for the `pbi` view in GitHub Projects. |
 | `epic` | ![#6f42c1](https://placehold.co/12x12/6f42c1/6f42c1.png) `#6f42c1` | **Epic** — A large body of work that encompasses multiple PBIs toward a bigger business objective. Epics are the parent level of PBIs. |
 | `bug` | ![#d73a4a](https://placehold.co/12x12/d73a4a/d73a4a.png) `#d73a4a` | **Bug** — Something isn't working as expected and needs to be investigated and fixed. |
-| `task` | ![#a2eeef](https://placehold.co/12x12/a2eeef/a2eeef.png) `#a2eeef` | **Task** — A child of a PBI. A specific, actionable work item that contributes to delivering a PBI (e.g., infrastructure, configuration, research). |
+| `task` | ![#a2eeef](https://placehold.co/12x12/a2eeef/a2eeef.png) `#a2eeef` | **Task** — A child of a PBI; contributes to delivering it (e.g., infrastructure, configuration, research). |
 
 ---
 

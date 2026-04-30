@@ -49,7 +49,7 @@ jobs:
             --force
 
           gh label create "task" \
-            --description "Task: a child of a PBI; contributes to delivering a PBI (e.g. infrastructure, configuration, research)" \
+            --description "Task: a child of a PBI; contributes to delivering it (e.g., infrastructure, configuration, research)" \
             --color "a2eeef" \
             --force
 
