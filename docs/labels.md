@@ -11,7 +11,7 @@ This document defines the standard labels used in this repository. These labels 
 | `pbi` | ![#0075ca](https://placehold.co/12x12/0075ca/0075ca.png) `#0075ca` | **Product Backlog Item** — A unit of work representing a specific feature, improvement, or change. Use for the `pbi` view in GitHub Projects. |
 | `epic` | ![#6f42c1](https://placehold.co/12x12/6f42c1/6f42c1.png) `#6f42c1` | **Epic** — A large body of work that encompasses multiple PBIs toward a bigger business objective. Epics are the parent level of PBIs. |
 | `bug` | ![#d73a4a](https://placehold.co/12x12/d73a4a/d73a4a.png) `#d73a4a` | **Bug** — Something isn't working as expected and needs to be investigated and fixed. |
-| `task` | ![#a2eeef](https://placehold.co/12x12/a2eeef/a2eeef.png) `#a2eeef` | **Task** — A specific, actionable work item that doesn't directly deliver user value on its own (e.g., infrastructure, configuration). |
+| `task` | ![#a2eeef](https://placehold.co/12x12/a2eeef/a2eeef.png) `#a2eeef` | **Task** — A child of a PBI. A specific, actionable work item that contributes to delivering a PBI (e.g., infrastructure, configuration, research). |
 
 ---
 
@@ -34,15 +34,6 @@ This document defines the standard labels used in this repository. These labels 
 
 ---
 
-## Workflow / Status Labels
-
-| Label | Color | Purpose |
-|-------|-------|---------|
-| `sprint` | ![#006b75](https://placehold.co/12x12/006b75/006b75.png) `#006b75` | **Sprint** — This item is planned for or being tracked in the current sprint. Useful for filtering the active sprint board. |
-| `in-progress` | ![#0e8a16](https://placehold.co/12x12/0e8a16/0e8a16.png) `#0e8a16` | **In Progress** — This issue is currently being actively worked on by a team member. |
-
----
-
 ## Other Labels
 
 | Label | Color | Purpose |
@@ -54,7 +45,7 @@ This document defines the standard labels used in this repository. These labels 
 
 ## Label Usage Guidelines
 
-- **Multiple labels are encouraged.** For example, a PBI that is currently being worked on should have both `pbi` and `in-progress`.
+- **Multiple labels are encouraged.** For example, a PBI that needs investigation can have both `pbi` and `ai-review`.
 - **`epic` issues should list related `pbi` issues** in their description as a checklist to track overall progress.
 - **`ai-review`** can be applied to any issue — use it to trigger an AI-assisted quality check before the team commits to implementing the work.
 - **`risk`** issues should follow the risk management view in GitHub Projects, and include a description of the risk, its likelihood, impact, and mitigation plan.
@@ -64,4 +55,4 @@ This document defines the standard labels used in this repository. These labels 
 
 ## Setting Up Labels
 
-Labels are automatically created when this template repository is first set up. See the [setup-labels workflow](../.github/workflows/setup-labels.yml) for details. If you need to recreate labels manually, you can re-run the disabled workflow from the **Actions** tab.
+Labels are created by running the one-time setup workflow. See the **[setup guide](setup.md)** for step-by-step instructions including how to trigger the workflow from the Actions tab.

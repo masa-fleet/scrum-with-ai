@@ -10,13 +10,8 @@ name: 🏷️ Setup Repository Labels
 #   3. The workflow will create all labels and then disable itself automatically.
 
 on:
-  # Allow manual trigger from the Actions tab
+  # Trigger manually from the Actions tab
   workflow_dispatch:
-  # Also trigger on the very first push to the default branch
-  # (covers cases where the user pushes code before running the workflow manually)
-  push:
-    branches:
-      - main
 
 jobs:
   setup-labels:
@@ -54,7 +49,7 @@ jobs:
             --force
 
           gh label create "task" \
-            --description "Task: a specific actionable work item (e.g. infrastructure, configuration)" \
+            --description "Task: a child of a PBI; contributes to delivering a PBI (e.g. infrastructure, configuration, research)" \
             --color "a2eeef" \
             --force
 
@@ -83,17 +78,6 @@ jobs:
           gh label create "tech-debt" \
             --description "Technical Debt: debt deliberately taken on that needs to be addressed in a future sprint" \
             --color "ededed" \
-            --force
-
-          echo "Creating workflow/status labels..."
-          gh label create "sprint" \
-            --description "Sprint: item planned for or being tracked in the current sprint" \
-            --color "006b75" \
-            --force
-
-          gh label create "in-progress" \
-            --description "In Progress: currently being actively worked on" \
-            --color "0e8a16" \
             --force
 
           echo "Creating other labels..."
