@@ -1,0 +1,50 @@
+name: 📋 Product Backlog Item (PBI)
+description: Use this template to describe a new product backlog item for the Scrum team.
+title: "[PBI] "
+labels:
+  - pbi
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Product Backlog Item
+        Fill in the sections below to help the team — and AI assistants — quickly understand what needs to be built and why.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "🎯 Goal"
+      description: "What is the desired outcome? (e.g. new feature, bug fix, technical improvement, setup, etc.)"
+      placeholder: "Describe clearly what needs to be achieved."
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: "📖 Background & Context"
+      description: "Why is this needed? What problem does it solve? Include any relevant links or prior discussions."
+      placeholder: "Describe the business need, pain point, or opportunity this PBI addresses."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "✅ Acceptance Criteria"
+      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes."
+      value: |
+        - [ ] AC1: 
+        - [ ] AC2: 
+        - [ ] AC3: 
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "📝 Additional Notes"
+      description: "Optional: technical hints, design constraints, dependencies, or anything useful for AI-assisted planning."
+      placeholder: "e.g. related PRs, API constraints, performance requirements, etc."
+    validations:
+      required: false
