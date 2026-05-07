@@ -14,5 +14,5 @@ Keep all Markdown files concise. Include only essential information.
 - Omit headings that only restate the file title.
 - No decorative emoji unless they aid scannability (e.g., status icons).
 - Tables only when comparing 3+ items.
+- Use Mermaid diagrams when they clearly improve understanding (e.g., flow, sequence, class, ER).
 - No "Additional Notes" or "Summary" sections unless the content adds new information.
-
