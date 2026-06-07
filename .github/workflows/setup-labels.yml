@@ -1,13 +1,14 @@
-name: 🏷️ Setup Repository Labels
+name: 🚀 Setup Repository
 
 # This workflow is intended to run ONCE when this template repository is first copied.
-# It creates all standard labels defined in docs/labels.md.
+# It creates all standard labels defined in docs/labels.md and opens initial setup issues
+# from the Markdown files under .github/setup-issues/.
 # After a successful run the workflow disables itself so it won't run again.
 #
 # How to use:
 #   1. Create a new repository from this template.
-#   2. Go to Actions → "🏷️ Setup Repository Labels" → Run workflow.
-#   3. The workflow will create all labels and then disable itself automatically.
+#   2. Go to Actions → "🚀 Setup Repository" → Run workflow.
+#   3. The workflow will create all labels, open setup issues, and then disable itself.
 
 on:
   # Trigger manually from the Actions tab
@@ -91,12 +92,93 @@ jobs:
             --color "d876e3" \
             --force
 
+          echo "Creating setup labels..."
+          gh label create "setup" \
+            --description "Setup: initial project setup task" \
+            --color "0e8a16" \
+            --force
+
           echo "✅ All labels created successfully."
+
+      - name: Create setup issues from Markdown files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import glob
+          import os
+          import re
+          import subprocess
+          import sys
+
+          try:
+              import yaml
+          except ImportError:
+              print("PyYAML not found, installing...")
+              subprocess.run([sys.executable, "-m", "pip", "install", "pyyaml", "-q"], check=True)
+              import yaml
+
+          issues_dir = ".github/setup-issues"
+          files = sorted(glob.glob(os.path.join(issues_dir, "*.md")))
+
+          if not files:
+              print(f"No Markdown files found in {issues_dir}, skipping.")
+              sys.exit(0)
+
+          for filepath in files:
+              print(f"Processing: {filepath}")
+              content = open(filepath, encoding="utf-8").read()
+
+              # Parse frontmatter
+              fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
+              if not fm_match:
+                  print(f"  Warning: No frontmatter found in {filepath}, skipping.")
+                  continue
+
+              metadata = yaml.safe_load(fm_match.group(1))
+              title = (metadata or {}).get("title", "").strip()
+              if not title:
+                  print(f"  Warning: No title found in frontmatter of {filepath}, skipping.")
+                  continue
+
+              body = content[fm_match.end():]
+
+              # Check for existing issue with the same title (open or closed)
+              result = subprocess.run(
+                  ["gh", "issue", "list",
+                   "--search", f'"{title}" in:title',
+                   "--state", "all",
+                   "--json", "number",
+                   "--jq", ".[0].number // empty"],
+                  capture_output=True, text=True, check=True
+              )
+              if result.stdout.strip():
+                  print(f"  Issue already exists (#{result.stdout.strip()}): {title!r}, skipping.")
+                  continue
+
+              # Create the issue
+              create = subprocess.run(
+                  ["gh", "issue", "create",
+                   "--title", title,
+                   "--body", body,
+                   "--label", "pbi",
+                   "--label", "setup"],
+                  capture_output=True, text=True
+              )
+              if create.returncode == 0:
+                  print(f"  ✅ Created issue: {title!r}")
+              else:
+                  print(f"  ❌ Failed to create issue: {title!r}")
+                  print(create.stderr)
+                  sys.exit(1)
+
+          print("✅ All setup issues processed.")
+          EOF
 
       - name: Disable this workflow after initial setup
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh workflow disable "setup-labels.yml"
-          echo "✅ Workflow disabled. Labels are set up and this workflow will not run automatically again."
-          echo "   To recreate labels in the future, re-enable and re-run this workflow from the Actions tab."
+          echo "✅ Workflow disabled. Setup is complete and this workflow will not run automatically again."
+          echo "   To re-run setup in the future, re-enable and re-run this workflow from the Actions tab."
