@@ -6,12 +6,16 @@ name: 🚀 Setup Repository
 # After a successful run the workflow disables itself so it won't run again.
 #
 # How to use:
-#   1. Create a new repository from this template.
-#   2. Go to Actions → "🚀 Setup Repository" → Run workflow.
-#   3. The workflow will create all labels, open setup issues, and then disable itself.
+#   - Automatic: the workflow runs automatically on the first push to main after the
+#     repository is created from this template.
+#   - Manual: go to Actions → "🚀 Setup Repository" → Run workflow.
 
 on:
-  # Trigger manually from the Actions tab
+  # Run automatically when this template is first copied and the default branch is pushed
+  push:
+    branches:
+      - main
+  # Keep manual trigger for testing / re-running setup
   workflow_dispatch:
 
 jobs:
@@ -100,7 +104,20 @@ jobs:
 
           echo "✅ All labels created successfully."
 
-      - name: Create setup issues from Markdown files
+  create-setup-issues:
+    name: Create setup issues from Markdown files
+    needs: setup-labels
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # needed for checkout
+      issues: write   # needed to create issues
+      actions: write  # needed to disable this workflow after setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create issues
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -176,9 +193,10 @@ jobs:
           EOF
 
       - name: Disable this workflow after initial setup
+        if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow disable "setup-labels.yml"
+          gh workflow disable "setup.yml"
           echo "✅ Workflow disabled. Setup is complete and this workflow will not run automatically again."
           echo "   To re-run setup in the future, re-enable and re-run this workflow from the Actions tab."
