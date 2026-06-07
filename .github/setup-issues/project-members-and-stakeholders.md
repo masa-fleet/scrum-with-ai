@@ -21,7 +21,11 @@ labels:
 - [ ] 整理された情報が `/docs/project` フォルダ配下に保存されている
 - [ ] AI がこの Issue のコメント欄に記載された情報をもとに、メンバー・ステークホルダー情報を整理している
 
-## Scrum Team
+## 📝 Additional Notes
+
+スクラムチームとステークホルダーは、それぞれ以下の記載例を参考に表形式で整理すること。
+
+**Scrum Team の記載例**
 
 | Role | Company A | Company B |
 | --- | --- | --- |
@@ -30,7 +34,7 @@ labels:
 | Data Scientist | Name (100%) | Name (100%) |
 | Scrum Master | Name (100%) | Name (100%) |
 
-## Stakeholders
+**Stakeholders の記載例**
 
 | Role | Company A | Company B |
 | --- | --- | --- |
