@@ -75,6 +75,10 @@ jobs:
               - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
               - whether expected outputs are explicit (code, document, ADR, etc.)
               Keep feedback concise and actionable.
+              Always format the response with these markdown sections:
+              1) 良い点
+              2) 改善提案
+              3) 改善後のAcceptance Criteriaサンプル
               """
           ).strip()
 
