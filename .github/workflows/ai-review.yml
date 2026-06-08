@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   issues: write
+  models: read
 
 jobs:
   review-issue:
@@ -35,153 +36,72 @@ jobs:
         if: steps.guard.outputs.trusted != 'true'
         run: echo "Skipping AI review for untrusted actor."
 
-      - name: Generate AI review and comment
+      - name: Generate AI review
         if: steps.guard.outputs.trusted == 'true'
+        id: inference
+        uses: actions/ai-inference@v1
+        with:
+          model: openai/gpt-4o-mini
+          temperature: "0.2"
+          system-prompt: |
+            You are an Agile product backlog quality reviewer.
+            Review a GitHub issue and provide practical improvements in Japanese.
+            Focus on:
+            - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
+            - clarity and completeness of each section
+            - whether Acceptance Criteria contains clear WHAT outcomes
+            - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
+            - whether expected outputs are explicit (code, document, ADR, etc.)
+            Keep feedback concise and actionable.
+            Always format the response with these markdown sections:
+            1) 良い点
+            2) 改善提案
+            3) 改善後のAcceptance Criteriaサンプル
+          prompt: |
+            Issue Title:
+            ${{ github.event.issue.title }}
+
+            Labels:
+            ${{ join(github.event.issue.labels.*.name, ', ') }}
+
+            Issue Body:
+            ${{ github.event.issue.body || '(No description provided)' }}
+
+            Please respond with markdown using:
+            1) 良い点
+            2) 改善提案
+            3) 改善後のAcceptance Criteriaサンプル
+
+      - name: Post AI review comment
+        if: steps.guard.outputs.trusted == 'true'
+        uses: actions/github-script@v8
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_API_URL: ${{ github.api_url }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
-        run: |
-          python3 <<'PY'
-          import json
-          import os
-          import textwrap
-          import urllib.error
-          import urllib.request
-
-          openai_api_key = os.getenv("OPENAI_API_KEY")
-          if not openai_api_key:
-              raise RuntimeError("OPENAI_API_KEY is not configured.")
-
-          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as f:
-              event = json.load(f)
-
-          issue = event["issue"]
-          issue_title = issue.get("title", "")
-          issue_body = issue.get("body") or "(No description provided)"
-          issue_number = issue["number"]
-          labels = [label["name"] for label in issue.get("labels", [])]
-
-          system_prompt = textwrap.dedent(
-              """
-              You are an Agile product backlog quality reviewer.
-              Review a GitHub issue and provide practical improvements in Japanese.
-              Focus on:
-              - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
-              - clarity and completeness of each section
-              - whether Acceptance Criteria contains clear WHAT outcomes
-              - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
-              - whether expected outputs are explicit (code, document, ADR, etc.)
-              Keep feedback concise and actionable.
-              Always format the response with these markdown sections:
-              1) 良い点
-              2) 改善提案
-              3) 改善後のAcceptance Criteriaサンプル
-              """
-          ).strip()
-
-          user_prompt = textwrap.dedent(
-              f"""
-              Issue Title:
-              {issue_title}
-
-              Labels:
-              {", ".join(labels)}
-
-              Issue Body:
-              {issue_body}
-
-              Please respond with markdown using:
-              1) 良い点
-              2) 改善提案
-              3) 改善後のAcceptance Criteriaサンプル
-              """
-          ).strip()
-
-          openai_payload = {
-              "model": "gpt-4o-mini",
-              "messages": [
-                  {"role": "system", "content": system_prompt},
-                  {"role": "user", "content": user_prompt},
-              ],
-              "temperature": 0.2,
-          }
-
-          req = urllib.request.Request(
-              "https://api.openai.com/v1/chat/completions",
-              data=json.dumps(openai_payload).encode("utf-8"),
-              headers={
-                  "Authorization": "Bearer " + openai_api_key,
-                  "Content-Type": "application/json",
-              },
-              method="POST",
-          )
-
-          try:
-              with urllib.request.urlopen(req) as response:
-                  openai_response = json.loads(response.read().decode("utf-8"))
-          except urllib.error.HTTPError as e:
-              body = e.read().decode("utf-8", errors="replace")
-              raise RuntimeError(f"OpenAI API request failed: {e.code} {body}") from e
-
-          choices = openai_response.get("choices") or []
-          if not choices:
-              raise RuntimeError("OpenAI response did not include any choices.")
-
-          review_markdown = choices[0]["message"]["content"].strip()
-          comment_body = (
-              "## 🤖 AI PBI Review\n\n"
-              f"{review_markdown}\n\n"
+          AI_REVIEW_RESPONSE: ${{ steps.inference.outputs.response }}
+        with:
+          script: |
+            const body = [
+              "## 🤖 AI PBI Review",
+              "",
+              process.env.AI_REVIEW_RESPONSE,
+              "",
               "_このレビューは `ai-review` ラベル追加をトリガーに自動生成されました。_"
-          )
+            ].join("\n");
 
-          repo = os.environ["GITHUB_REPOSITORY"]
-          api_url = os.environ["GITHUB_API_URL"]
-          github_token = os.environ["GITHUB_TOKEN"]
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
 
-          comment_url = f"{api_url}/repos/{repo}/issues/{issue_number}/comments"
-          comment_req = urllib.request.Request(
-              comment_url,
-              data=json.dumps({"body": comment_body}).encode("utf-8"),
-              headers={
-                  "Authorization": "Bearer " + github_token,
-                  "Accept": "application/vnd.github+json",
-                  "Content-Type": "application/json",
-              },
-              method="POST",
-          )
-
-          try:
-              with urllib.request.urlopen(comment_req):
-                  pass
-          except urllib.error.HTTPError as e:
-              body = e.read().decode("utf-8", errors="replace")
-              raise RuntimeError(
-                  f"Failed to create comment via GitHub API: {e.code} {body}"
-              ) from e
-
-          labels_url = f"{api_url}/repos/{repo}/issues/{issue_number}/labels"
-          labels_req = urllib.request.Request(
-              labels_url,
-              data=json.dumps({"labels": ["human-review"]}).encode("utf-8"),
-              headers={
-                  "Authorization": "Bearer " + github_token,
-                  "Accept": "application/vnd.github+json",
-                  "Content-Type": "application/json",
-              },
-              method="POST",
-          )
-
-          try:
-              with urllib.request.urlopen(labels_req):
-                  pass
-          except urllib.error.HTTPError as e:
-              body = e.read().decode("utf-8", errors="replace")
-              raise RuntimeError(
-                  f"Failed to add human-review label via GitHub API: {e.code} {body}"
-              ) from e
-
-          print("AI review comment posted and human-review label added.")
-          PY
+      - name: Add human-review label
+        if: steps.guard.outputs.trusted == 'true'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ["human-review"]
+            });
