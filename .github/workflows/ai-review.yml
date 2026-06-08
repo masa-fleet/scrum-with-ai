@@ -17,6 +17,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Detect issue language
+        id: detect-language
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
+            const hasJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
+            core.setOutput("language_name", hasJapanese ? "Japanese" : "the primary language used in the issue text");
+
       - name: Generate AI review
         id: inference
         uses: actions/ai-inference@v1
@@ -26,6 +35,8 @@ jobs:
           system-prompt: |
             You are a Scrum product backlog quality reviewer.
             Review a GitHub issue and provide practical improvements in the same language as the issue.
+            The detected issue language is: ${{ steps.detect-language.outputs.language_name }}.
+            You MUST write the entire review in that language.
             Focus on:
             - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
             - clarity and completeness of each section
@@ -33,10 +44,11 @@ jobs:
             - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
             - whether expected outputs are explicit (code, document, ADR, etc.)
             Keep feedback concise and actionable.
-            Always format the response with these markdown sections:
+            Format the response in markdown with 3 sections in this order:
             1) Strengths
             2) Improvement Suggestions
             3) Revised Acceptance Criteria Sample
+            Translate these section headings into the same language as the issue.
           prompt: |
             Issue Title:
             ${{ github.event.issue.title }}
@@ -47,10 +59,8 @@ jobs:
             Issue Body:
             ${{ github.event.issue.body || '(No description provided)' }}
 
-            Please respond with markdown using:
-            1) Strengths
-            2) Improvement Suggestions
-            3) Revised Acceptance Criteria Sample
+            The issue language is: ${{ steps.detect-language.outputs.language_name }}.
+            Respond entirely in this language.
 
       - name: Post AI review comment
         uses: actions/github-script@v8
@@ -83,3 +93,20 @@ jobs:
               issue_number: context.issue.number,
               labels: ["human-review"]
             });
+
+      - name: Remove ai-review label
+        uses: actions/github-script@v8
+        with:
+          script: |
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: "ai-review"
+              });
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+            }
