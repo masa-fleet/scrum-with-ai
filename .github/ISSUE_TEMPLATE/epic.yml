@@ -63,18 +63,6 @@ body:
       required: true
 
   - type: textarea
-    id: child-pbis
-    attributes:
-      label: "📋 Child PBIs"
-      description: "List the PBIs (Product Backlog Items) that make up this Epic. Add links to issues as they are created."
-      placeholder: |
-        - [ ] #123 — Set up OAuth provider integration
-        - [ ] #124 — Implement Google login flow
-        - [ ] #125 — Add login UI to sign-up page
-    validations:
-      required: false
-
-  - type: textarea
     id: notes
     attributes:
       label: "📝 Additional Notes"
