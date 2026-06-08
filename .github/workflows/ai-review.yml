@@ -24,7 +24,7 @@ jobs:
           script: |
             const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
             const hasJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
-            core.setOutput("language_name", hasJapanese ? "Japanese" : "the same language as the issue text");
+            core.setOutput("language_name", hasJapanese ? "Japanese" : "English");
 
       - name: Generate AI review
         id: inference
@@ -48,7 +48,6 @@ jobs:
             1) Strengths
             2) Improvement Suggestions
             3) Revised Acceptance Criteria Sample
-            Translate these section headings into the same language as the issue.
           prompt: |
             Issue Title:
             ${{ github.event.issue.title }}
