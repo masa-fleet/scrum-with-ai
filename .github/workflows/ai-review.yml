@@ -17,27 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Allow only trusted label actions
-        id: guard
-        run: |
-          association="${{ github.event.sender.association }}"
-          echo "Sender association: ${association}"
-
-          case "${association}" in
-            OWNER|MEMBER|COLLABORATOR)
-              echo "trusted=true" >> "$GITHUB_OUTPUT"
-              ;;
-            *)
-              echo "trusted=false" >> "$GITHUB_OUTPUT"
-              ;;
-          esac
-
-      - name: Skip untrusted request
-        if: steps.guard.outputs.trusted != 'true'
-        run: echo "Skipping AI review for untrusted actor."
-
       - name: Generate AI review
-        if: steps.guard.outputs.trusted == 'true'
         id: inference
         uses: actions/ai-inference@v1
         with:
@@ -73,7 +53,6 @@ jobs:
             3) 改善後のAcceptance Criteriaサンプル
 
       - name: Post AI review comment
-        if: steps.guard.outputs.trusted == 'true'
         uses: actions/github-script@v8
         env:
           AI_REVIEW_RESPONSE: ${{ steps.inference.outputs.response }}
@@ -95,7 +74,6 @@ jobs:
             });
 
       - name: Add human-review label
-        if: steps.guard.outputs.trusted == 'true'
         uses: actions/github-script@v8
         with:
           script: |
