@@ -24,7 +24,7 @@ jobs:
           script: |
             const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
             const hasJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
-            core.setOutput("language_name", hasJapanese ? "Japanese" : "the primary language used in the issue text");
+            core.setOutput("language_name", hasJapanese ? "Japanese" : "the same language as the issue text");
 
       - name: Generate AI review
         id: inference
