@@ -47,6 +47,7 @@ jobs:
           python3 <<'PY'
           import json
           import os
+          import textwrap
           import urllib.error
           import urllib.request
 
@@ -63,32 +64,36 @@ jobs:
           issue_number = issue["number"]
           labels = [label["name"] for label in issue.get("labels", [])]
 
-          system_prompt = """
-          You are an Agile product backlog quality reviewer.
-          Review a GitHub issue and provide practical improvements in Japanese.
-          Focus on:
-          - clarity and completeness of each section
-          - whether Acceptance Criteria contains clear WHAT outcomes
-          - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
-          - whether expected outputs are explicit (code, document, ADR, etc.)
-          Keep feedback concise and actionable.
-          """
+          system_prompt = textwrap.dedent(
+              """
+              You are an Agile product backlog quality reviewer.
+              Review a GitHub issue and provide practical improvements in Japanese.
+              Focus on:
+              - clarity and completeness of each section
+              - whether Acceptance Criteria contains clear WHAT outcomes
+              - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
+              - whether expected outputs are explicit (code, document, ADR, etc.)
+              Keep feedback concise and actionable.
+              """
+          ).strip()
 
-          user_prompt = f"""
-          Issue Title:
-          {issue_title}
+          user_prompt = textwrap.dedent(
+              f"""
+              Issue Title:
+              {issue_title}
 
-          Labels:
-          {", ".join(labels)}
+              Labels:
+              {", ".join(labels)}
 
-          Issue Body:
-          {issue_body}
+              Issue Body:
+              {issue_body}
 
-          Please respond with markdown using:
-          1) 良い点
-          2) 改善提案
-          3) 改善後のAcceptance Criteriaサンプル
-          """
+              Please respond with markdown using:
+              1) 良い点
+              2) 改善提案
+              3) 改善後のAcceptance Criteriaサンプル
+              """
+          ).strip()
 
           openai_payload = {
               "model": "gpt-4o-mini",
