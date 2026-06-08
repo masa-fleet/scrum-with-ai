@@ -20,6 +20,7 @@ This document defines the standard labels used in this repository. These labels 
 | Label | Color | Purpose |
 |-------|-------|---------|
 | `ai-review` | ![#5319e7](https://placehold.co/12x12/5319e7/5319e7.png) `#5319e7` | **AI Review** — Request an AI assistant to review and assess the quality, clarity, or completeness of this issue. Useful as a quality gate before sprint planning. |
+| `human-review` | ![#1d76db](https://placehold.co/12x12/1d76db/1d76db.png) `#1d76db` | **Human Review** — Indicates AI review is complete and a human should validate and finalize the issue quality. |
 | `prototype` | ![#e4e669](https://placehold.co/12x12/e4e669/e4e669.png) `#e4e669` | **Prototype** — This issue is for exploratory or prototyping purposes. Deep consideration of NFRs (non-functional requirements) and backend architecture is not required at this stage. |
 
 ---
@@ -48,6 +49,7 @@ This document defines the standard labels used in this repository. These labels 
 - **Multiple labels are encouraged.** For example, a PBI that needs investigation can have both `pbi` and `ai-review`.
 - **`epic` issues should list related `pbi` issues** in their description as a checklist to track overall progress.
 - **`ai-review`** can be applied to any issue — use it to trigger an AI-assisted quality check before the team commits to implementing the work.
+- **`human-review`** indicates AI-assisted feedback has been posted and the issue is ready for a final human quality check.
 - **`risk`** issues should follow the risk management view in GitHub Projects, and include a description of the risk, its likelihood, impact, and mitigation plan.
 - **`prototype`** issues should clearly state what is being explored and what the expected output (e.g., a proof of concept, a demo, a decision) looks like.
 

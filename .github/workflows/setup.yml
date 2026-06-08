@@ -64,6 +64,11 @@ jobs:
             --color "5319e7" \
             --force
 
+          gh label create "human-review" \
+            --description "Human Review: indicates AI review is complete and human validation is requested" \
+            --color "1d76db" \
+            --force
+
           gh label create "prototype" \
             --description "Prototype: exploratory purpose — deep NFR and backend considerations not required" \
             --color "e4e669" \
