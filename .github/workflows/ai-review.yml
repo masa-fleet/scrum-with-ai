@@ -69,6 +69,7 @@ jobs:
               You are an Agile product backlog quality reviewer.
               Review a GitHub issue and provide practical improvements in Japanese.
               Focus on:
+              - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
               - clarity and completeness of each section
               - whether Acceptance Criteria contains clear WHAT outcomes
               - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
@@ -148,9 +149,14 @@ jobs:
               method="POST",
           )
 
-          with urllib.request.urlopen(comment_req) as response:
-              if response.status not in (200, 201):
-                  raise RuntimeError(f"Failed to create comment. Status: {response.status}")
+          try:
+              with urllib.request.urlopen(comment_req):
+                  pass
+          except urllib.error.HTTPError as e:
+              body = e.read().decode("utf-8", errors="replace")
+              raise RuntimeError(
+                  f"Failed to create comment via GitHub API: {e.code} {body}"
+              ) from e
 
           labels_url = f"{api_url}/repos/{repo}/issues/{issue_number}/labels"
           labels_req = urllib.request.Request(
@@ -164,9 +170,14 @@ jobs:
               method="POST",
           )
 
-          with urllib.request.urlopen(labels_req) as response:
-              if response.status not in (200, 201):
-                  raise RuntimeError(f"Failed to add human-review label. Status: {response.status}")
+          try:
+              with urllib.request.urlopen(labels_req):
+                  pass
+          except urllib.error.HTTPError as e:
+              body = e.read().decode("utf-8", errors="replace")
+              raise RuntimeError(
+                  f"Failed to add human-review label via GitHub API: {e.code} {body}"
+              ) from e
 
           print("AI review comment posted and human-review label added.")
           PY
