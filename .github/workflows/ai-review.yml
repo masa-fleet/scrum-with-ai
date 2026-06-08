@@ -1,0 +1,167 @@
+name: 🤖 AI Review PBI
+
+on:
+  issues:
+    types:
+      - labeled
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  review-issue:
+    name: Review issue with OpenAI
+    if: github.event.label.name == 'ai-review'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Allow only trusted label actions
+        id: guard
+        run: |
+          association="${{ github.event.sender.association }}"
+          echo "Sender association: ${association}"
+
+          case "${association}" in
+            OWNER|MEMBER|COLLABORATOR)
+              echo "trusted=true" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "trusted=false" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
+
+      - name: Skip untrusted request
+        if: steps.guard.outputs.trusted != 'true'
+        run: echo "Skipping AI review for untrusted actor."
+
+      - name: Generate AI review and comment
+        if: steps.guard.outputs.trusted == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_API_URL: ${{ github.api_url }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.request
+
+          openai_api_key = os.getenv("OPENAI_API_KEY")
+          if not openai_api_key:
+              raise RuntimeError("OPENAI_API_KEY is not configured.")
+
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as f:
+              event = json.load(f)
+
+          issue = event["issue"]
+          issue_title = issue.get("title", "")
+          issue_body = issue.get("body") or "(No description provided)"
+          issue_number = issue["number"]
+          labels = [label["name"] for label in issue.get("labels", [])]
+
+          system_prompt = """
+          You are an Agile product backlog quality reviewer.
+          Review a GitHub issue and provide practical improvements in Japanese.
+          Focus on:
+          - clarity and completeness of each section
+          - whether Acceptance Criteria contains clear WHAT outcomes
+          - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
+          - whether expected outputs are explicit (code, document, ADR, etc.)
+          Keep feedback concise and actionable.
+          """
+
+          user_prompt = f"""
+          Issue Title:
+          {issue_title}
+
+          Labels:
+          {", ".join(labels)}
+
+          Issue Body:
+          {issue_body}
+
+          Please respond with markdown using:
+          1) 良い点
+          2) 改善提案
+          3) 改善後のAcceptance Criteriaサンプル
+          """
+
+          openai_payload = {
+              "model": "gpt-4o-mini",
+              "messages": [
+                  {"role": "system", "content": system_prompt},
+                  {"role": "user", "content": user_prompt},
+              ],
+              "temperature": 0.2,
+          }
+
+          req = urllib.request.Request(
+              "https://api.openai.com/v1/chat/completions",
+              data=json.dumps(openai_payload).encode("utf-8"),
+              headers={
+                  "Authorization": "Bearer " + openai_api_key,
+                  "Content-Type": "application/json",
+              },
+              method="POST",
+          )
+
+          try:
+              with urllib.request.urlopen(req) as response:
+                  openai_response = json.loads(response.read().decode("utf-8"))
+          except urllib.error.HTTPError as e:
+              body = e.read().decode("utf-8", errors="replace")
+              raise RuntimeError(f"OpenAI API request failed: {e.code} {body}") from e
+
+          choices = openai_response.get("choices") or []
+          if not choices:
+              raise RuntimeError("OpenAI response did not include any choices.")
+
+          review_markdown = choices[0]["message"]["content"].strip()
+          comment_body = (
+              "## 🤖 AI PBI Review\n\n"
+              f"{review_markdown}\n\n"
+              "_このレビューは `ai-review` ラベル追加をトリガーに自動生成されました。_"
+          )
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          api_url = os.environ["GITHUB_API_URL"]
+          github_token = os.environ["GITHUB_TOKEN"]
+
+          comment_url = f"{api_url}/repos/{repo}/issues/{issue_number}/comments"
+          comment_req = urllib.request.Request(
+              comment_url,
+              data=json.dumps({"body": comment_body}).encode("utf-8"),
+              headers={
+                  "Authorization": "Bearer " + github_token,
+                  "Accept": "application/vnd.github+json",
+                  "Content-Type": "application/json",
+              },
+              method="POST",
+          )
+
+          with urllib.request.urlopen(comment_req) as response:
+              if response.status not in (200, 201):
+                  raise RuntimeError(f"Failed to create comment. Status: {response.status}")
+
+          labels_url = f"{api_url}/repos/{repo}/issues/{issue_number}/labels"
+          labels_req = urllib.request.Request(
+              labels_url,
+              data=json.dumps({"labels": ["human-review"]}).encode("utf-8"),
+              headers={
+                  "Authorization": "Bearer " + github_token,
+                  "Accept": "application/vnd.github+json",
+                  "Content-Type": "application/json",
+              },
+              method="POST",
+          )
+
+          with urllib.request.urlopen(labels_req) as response:
+              if response.status not in (200, 201):
+                  raise RuntimeError(f"Failed to add human-review label. Status: {response.status}")
+
+          print("AI review comment posted and human-review label added.")
+          PY
