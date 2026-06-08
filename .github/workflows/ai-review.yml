@@ -23,8 +23,8 @@ jobs:
         with:
           script: |
             const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
-            const hasJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
-            core.setOutput("language_name", hasJapanese ? "Japanese" : "English");
+            const containsJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
+            core.setOutput("language_name", containsJapanese ? "Japanese" : "English");
 
       - name: Generate AI review
         id: inference
@@ -57,9 +57,6 @@ jobs:
 
             Issue Body:
             ${{ github.event.issue.body || '(No description provided)' }}
-
-            The issue language is: ${{ steps.detect-language.outputs.language_name }}.
-            Respond entirely in this language.
 
       - name: Post AI review comment
         uses: actions/github-script@v8
