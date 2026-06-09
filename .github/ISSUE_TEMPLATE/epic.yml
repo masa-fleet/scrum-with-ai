@@ -1,0 +1,73 @@
+name: 🗺️ Epic
+description: Use this template to describe a large body of work that spans multiple sprints and encompasses multiple PBIs.
+title: "[Epic] "
+labels:
+  - epic
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in the sections below to help the team — and AI assistants — understand the long-term goal, business impact, and completion criteria for this Epic.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "🎯 Goal / Outcome"
+      description: "What is the long-term desired outcome of this Epic? Describe the end-state you are working toward."
+      placeholder: |
+        e.g. Enable customers to authenticate using social login providers (Google, GitHub) to reduce friction during sign-up and increase conversion rates.
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: "📖 Background & Context"
+      description: "Why is this Epic needed? What problem or opportunity does it address? Include any relevant strategy documents, prior discussions, or links."
+      placeholder: |
+        e.g. Currently users must create a username/password account. Research shows 40% of users abandon sign-up at this step. Social login is a proven way to reduce this friction.
+    validations:
+      required: true
+
+  - type: textarea
+    id: business-value
+    attributes:
+      label: "💼 Business Value & Success Metrics"
+      description: "What business value does this Epic deliver? How will success be measured? Define concrete, observable metrics."
+      placeholder: |
+        Business Value:
+        - Reduces sign-up abandonment by lowering friction for new users.
+        - Increases monthly active users by making onboarding faster.
+
+        Success Metrics:
+        - Sign-up conversion rate increases from X% to Y% within 30 days of launch.
+        - Support tickets related to account/password issues decrease by Z%.
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: "✅ Definition of Done"
+      description: "List the conditions that must be met for this Epic to be considered complete. Include what is explicitly out of scope."
+      value: |
+        ### In Scope
+        - [ ] 
+        - [ ] 
+        - [ ] 
+
+        ### Out of Scope
+        - 
+        - 
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "📝 Additional Notes"
+      description: "Optional: dependencies, risks, technical constraints, architecture decisions, or anything else useful for planning."
+      placeholder: |
+        e.g. Depends on the identity service being migrated to the new platform (Epic #100). Consult security team before choosing OAuth library.
+    validations:
+      required: false
