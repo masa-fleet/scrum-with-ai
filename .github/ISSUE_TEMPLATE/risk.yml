@@ -1,5 +1,5 @@
 name: ⚠️ Risk
-description: Use this template to register and manage project risks with owner, impact, and mitigation details.
+description: Use this template to register and manage project risks with likelihood, impact, and mitigation details.
 title: "[Risk] "
 labels:
   - risk
@@ -52,52 +52,13 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: owner
-    attributes:
-      label: "👤 Risk Owner"
-      description: "Who is responsible for tracking and driving mitigation?"
-      placeholder: "@username"
-    validations:
-      required: true
-
   - type: textarea
     id: mitigation-plan
     attributes:
       label: "🛡️ Mitigation Plan"
       description: "What actions will reduce the likelihood and/or impact?"
       value: |
-        - [ ] Define mitigation task 1
-        - [ ] Define mitigation task 2
-    validations:
-      required: true
-
-  - type: textarea
-    id: contingency-plan
-    attributes:
-      label: "🧯 Contingency / Response Plan"
-      description: "If the risk materializes, what is the immediate response?"
-      placeholder: "Describe the fallback, escalation path, and recovery steps."
-    validations:
-      required: true
-
-  - type: textarea
-    id: monitoring
-    attributes:
-      label: "📡 Monitoring & Triggers"
-      description: "What signals indicate this risk is increasing or has occurred?"
-      placeholder: "e.g. Alert thresholds, audit log checks, error-rate changes, failed controls."
-    validations:
-      required: true
-
-  - type: textarea
-    id: acceptance-criteria
-    attributes:
-      label: "✅ Exit Criteria"
-      description: "When can this risk be considered controlled or closed?"
-      value: |
-        - [ ] Clear mitigation tasks are implemented.
-        - [ ] Monitoring is in place and verified.
-        - [ ] Owner confirms residual risk is acceptable.
+        - [ ] 
+        - [ ] 
     validations:
       required: true
