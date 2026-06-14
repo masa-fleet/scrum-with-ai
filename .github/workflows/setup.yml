@@ -90,6 +90,11 @@ jobs:
             --color "ededed" \
             --force
 
+          gh label create "security" \
+            --description "Security: security-related work such as vulnerabilities, hardening, or threat mitigation" \
+            --color "d93f0b" \
+            --force
+
           echo "Creating other labels..."
           gh label create "documentation" \
             --description "Documentation: improvements or additions to documentation" \

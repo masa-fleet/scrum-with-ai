@@ -32,6 +32,7 @@ This document defines the standard labels used in this repository. These labels 
 | `risk` | ![#e4700d](https://placehold.co/12x12/e4700d/e4700d.png) `#e4700d` | **Risk** — Identifies a risk item that the team needs to monitor or mitigate. Use for the `risk` view in GitHub Projects to manage the risk register. |
 | `blocked` | ![#b60205](https://placehold.co/12x12/b60205/b60205.png) `#b60205` | **Blocked** — Progress on this issue is blocked by an unresolved dependency, external factor, or decision. Requires immediate attention. |
 | `tech-debt` | ![#ededed](https://placehold.co/12x12/ededed/ededed.png) `#ededed` | **Technical Debt** — Tracks technical debt that has been deliberately taken on and needs to be addressed in a future sprint. |
+| `security` | ![#d93f0b](https://placehold.co/12x12/d93f0b/d93f0b.png) `#d93f0b` | **Security** — Security-related work such as vulnerabilities, hardening, or threat mitigation. |
 
 ---
 
