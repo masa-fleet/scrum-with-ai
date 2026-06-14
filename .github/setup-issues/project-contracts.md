@@ -1,5 +1,5 @@
 ---
-title: "[PBI] プロジェクト開始に必要な契約を整理する"
+title: "[PBI] プロジェクト開始に必要な契約を締結する"
 labels:
   - pbi
   - setup
