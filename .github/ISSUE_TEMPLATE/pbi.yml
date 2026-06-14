@@ -14,8 +14,9 @@ body:
     id: goal
     attributes:
       label: "🎯 Goal"
-      description: "What is the desired outcome? (e.g. new feature, bug fix, technical improvement, setup, etc.)"
-      placeholder: "Describe clearly what needs to be achieved."
+      description: "What outcome should be achieved when this PBI is done? Focus on WHAT to deliver."
+      placeholder: |
+        e.g. Organize project members and stakeholders, then save the result under /docs/project.
     validations:
       required: true
 
@@ -23,8 +24,9 @@ body:
     id: background
     attributes:
       label: "📖 Background & Context"
-      description: "Why is this needed? What problem does it solve? Include any relevant links or prior discussions."
-      placeholder: "Describe the business need, pain point, or opportunity this PBI addresses."
+      description: "Why is this needed now? Explain the problem, impact, and any useful links/context."
+      placeholder: |
+        e.g. Team roles are unclear at project start, causing slow decisions and handoff confusion.
     validations:
       required: true
 
@@ -32,11 +34,15 @@ body:
     id: acceptance-criteria
     attributes:
       label: "✅ Acceptance Criteria"
-      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes."
+      description: "List observable done conditions as a simple checklist."
+      placeholder: |
+        - [ ] Members are organized by role and company.
+        - [ ] Stakeholders are organized by role and level of involvement.
+        - [ ] The final output is saved in the agreed repository location.
       value: |
-        - [ ] AC1: 
-        - [ ] AC2: 
-        - [ ] AC3: 
+        - [ ] 
+        - [ ] 
+        - [ ] 
     validations:
       required: true
 
