@@ -1,0 +1,212 @@
+name: 🚀 Setup Repository
+
+# This workflow is intended to run ONCE when this template repository is first copied.
+# It creates all standard labels defined in docs/labels.md and opens initial setup issues
+# from the Markdown files under .github/setup-issues/.
+# After a successful run the workflow disables itself so it won't run again.
+#
+# How to use:
+#   - Automatic: the workflow runs automatically on the first push to main after the
+#     repository is created from this template.
+#   - Manual: go to Actions → "🚀 Setup Repository" → Run workflow.
+
+on:
+  # Run automatically when this template is first copied and the default branch is pushed
+  push:
+    branches:
+      - main
+  # Keep manual trigger for testing / re-running setup
+  workflow_dispatch:
+
+jobs:
+  setup-labels:
+    name: Create and configure labels
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # needed for checkout
+      issues: write   # needed to create/update labels
+      actions: write  # needed to disable this workflow after setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          echo "Creating issue-type labels..."
+          gh label create "pbi" \
+            --description "Product Backlog Item: a unit of work representing a specific feature or improvement" \
+            --color "0075ca" \
+            --force
+
+          gh label create "epic" \
+            --description "Epic: a large body of work encompassing multiple PBIs toward a bigger business objective" \
+            --color "6f42c1" \
+            --force
+
+          gh label create "bug" \
+            --description "Bug: something isn't working as expected" \
+            --color "d73a4a" \
+            --force
+
+          gh label create "task" \
+            --description "Task: a child of a PBI; contributes to delivering it (e.g., infrastructure, configuration, research)" \
+            --color "a2eeef" \
+            --force
+
+          echo "Creating AI-assisted labels..."
+          gh label create "ai-review" \
+            --description "AI Review: request an AI assistant to review the quality and completeness of this issue" \
+            --color "5319e7" \
+            --force
+
+          gh label create "human-review" \
+            --description "Human Review: indicates AI review is complete and human validation is requested" \
+            --color "1d76db" \
+            --force
+
+          gh label create "prototype" \
+            --description "Prototype: exploratory purpose — deep NFR and backend considerations not required" \
+            --color "e4e669" \
+            --force
+
+          echo "Creating management labels..."
+          gh label create "risk" \
+            --description "Risk: identifies a risk item for the risk register; use for the 'risk' view in GitHub Projects" \
+            --color "e4700d" \
+            --force
+
+          gh label create "blocked" \
+            --description "Blocked: progress is blocked by an unresolved dependency or external factor" \
+            --color "b60205" \
+            --force
+
+          gh label create "tech-debt" \
+            --description "Technical Debt: debt deliberately taken on that needs to be addressed in a future sprint" \
+            --color "ededed" \
+            --force
+
+          gh label create "security" \
+            --description "Security: security-related work such as vulnerabilities, hardening, or threat mitigation" \
+            --color "d93f0b" \
+            --force
+
+          echo "Creating other labels..."
+          gh label create "documentation" \
+            --description "Documentation: improvements or additions to documentation" \
+            --color "c5def5" \
+            --force
+
+          gh label create "question" \
+            --description "Question: further information is needed before this issue can proceed" \
+            --color "d876e3" \
+            --force
+
+          echo "Creating setup labels..."
+          gh label create "setup" \
+            --description "Setup: initial project setup task" \
+            --color "0e8a16" \
+            --force
+
+          echo "✅ All labels created successfully."
+
+  create-setup-issues:
+    name: Create setup issues from Markdown files
+    needs: setup-labels
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # needed for checkout
+      issues: write   # needed to create issues
+      actions: write  # needed to disable this workflow after setup
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import glob
+          import os
+          import re
+          import subprocess
+          import sys
+
+          try:
+              import yaml
+          except ImportError:
+              print("PyYAML not found, installing...")
+              subprocess.run([sys.executable, "-m", "pip", "install", "pyyaml", "-q"], check=True)
+              import yaml
+
+          issues_dir = ".github/setup-issues"
+          files = sorted(glob.glob(os.path.join(issues_dir, "*.md")))
+
+          if not files:
+              print(f"No Markdown files found in {issues_dir}, skipping.")
+              sys.exit(0)
+
+          for filepath in files:
+              print(f"Processing: {filepath}")
+              content = open(filepath, encoding="utf-8").read()
+
+              # Parse frontmatter
+              fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
+              if not fm_match:
+                  print(f"  Warning: No frontmatter found in {filepath}, skipping.")
+                  continue
+
+              metadata = yaml.safe_load(fm_match.group(1))
+              title = (metadata or {}).get("title", "").strip()
+              if not title:
+                  print(f"  Warning: No title found in frontmatter of {filepath}, skipping.")
+                  continue
+
+              body = content[fm_match.end():]
+
+              # Check for existing issue with the same title (open or closed)
+              result = subprocess.run(
+                  ["gh", "issue", "list",
+                   "--search", f'"{title}" in:title',
+                   "--state", "all",
+                   "--json", "number",
+                   "--jq", ".[0].number // empty"],
+                  capture_output=True, text=True, check=True
+              )
+              if result.stdout.strip():
+                  print(f"  Issue already exists (#{result.stdout.strip()}): {title!r}, skipping.")
+                  continue
+
+              # Create the issue
+              create = subprocess.run(
+                  ["gh", "issue", "create",
+                   "--title", title,
+                   "--body", body,
+                   "--label", "pbi",
+                   "--label", "setup"],
+                  capture_output=True, text=True
+              )
+              if create.returncode == 0:
+                  print(f"  ✅ Created issue: {title!r}")
+              else:
+                  print(f"  ❌ Failed to create issue: {title!r}")
+                  print(create.stderr)
+                  sys.exit(1)
+
+          print("✅ All setup issues processed.")
+          EOF
+
+      - name: Disable this workflow after initial setup
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow disable "setup.yml"
+          echo "✅ Workflow disabled. Setup is complete and this workflow will not run automatically again."
+          echo "   To re-run setup in the future, re-enable and re-run this workflow from the Actions tab."

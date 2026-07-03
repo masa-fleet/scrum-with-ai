@@ -1,0 +1,64 @@
+name: ⚠️ Risk
+description: Use this template to register and manage project risks with likelihood, impact, and mitigation details.
+title: "[Risk] "
+labels:
+  - risk
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in the sections below to document the risk, evaluate severity, and track mitigation.
+
+  - type: textarea
+    id: risk-statement
+    attributes:
+      label: "🚨 Risk Statement"
+      description: "What could happen? Describe the risk event clearly in one sentence."
+      placeholder: "e.g. Sensitive data may be exposed if access control checks are bypassed in the new API endpoint."
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: "📖 Background & Context"
+      description: "Why is this risk relevant now? Include affected systems, assumptions, and links."
+      placeholder: "Describe where this risk comes from and what parts of the project are affected."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: likelihood
+    attributes:
+      label: "🎲 Likelihood"
+      description: "How likely is this risk to occur?"
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: "💥 Impact"
+      description: "If this occurs, how severe is the impact?"
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation-plan
+    attributes:
+      label: "🛡️ Mitigation Plan"
+      description: "What actions will reduce the likelihood and/or impact?"
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true

@@ -1,0 +1,56 @@
+name: 📋 Product Backlog Item (PBI)
+description: Use this template to describe a new product backlog item for the Scrum team.
+title: "[PBI] "
+labels:
+  - pbi
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Product Backlog Item
+        Fill in the sections below to help the team — and AI assistants — quickly understand what needs to be built and why.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "🎯 Goal"
+      description: "What outcome should be achieved when this PBI is done? Focus on WHAT to deliver."
+      placeholder: |
+        e.g. Enable users to reset their password by email so they can recover account access without support help.
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: "📖 Background & Context"
+      description: "Why is this needed now? Explain the problem, impact, and any useful links/context."
+      placeholder: |
+        e.g. Users who forget passwords cannot log in, which increases support tickets and causes drop-off.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "✅ Acceptance Criteria"
+      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes. Focus on WHAT outcomes are expected, and avoid describing HOW to implement them."
+      placeholder: |
+        - [ ] Users can request a password reset from the sign-in page.
+        - [ ] Users receive a valid reset email and can set a new password.
+        - [ ] Users can sign in successfully with the updated password.
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "📝 Additional Notes"
+      description: "Optional: technical hints, design constraints, dependencies, or anything useful for AI-assisted planning."
+      placeholder: "e.g. related PRs, API constraints, performance requirements, etc."
+    validations:
+      required: false
