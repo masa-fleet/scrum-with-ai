@@ -27,7 +27,15 @@ This template ships with a one-time workflow that creates all [standard labels](
 
 ---
 
-## Step 3 — Configure GitHub Projects (optional)
+## Step 3 — Apply Branch Policy
+
+Protect `main` with the branch ruleset defined in [branch-policy.md](branch-policy.md).
+
+> **Note:** Branch protection settings are not inherited from the template automatically. Run this step manually on each new repository.
+
+---
+
+## Step 4 — Configure GitHub Projects (optional)
 
 The labels are designed to work well with GitHub Projects views:
 
