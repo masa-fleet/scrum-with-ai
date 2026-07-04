@@ -62,6 +62,10 @@
   - Security advisories を運用する
 - 有効化しない
   - private 向けの GitHub Secret Protection / GitHub Code Security の追加購入
+- 結果費用
+  - 追加費用は `0 USD / 月`。
+  - 理由は、このPJで有効化する対象が public リポジトリで無償利用できる標準機能だけで、private 向け有償製品を追加購入しないため。
+  - Code scanning を GitHub Actions ベースで動かしても、public リポジトリの標準 GitHub-hosted runner は無料・無制限のため追加費用は発生しない。
 - 理由
   - このリポジトリは public なので、無償で使える標準機能を広く有効化するのが最も合理的。
   - private 向け有償製品は、private 化と組織移管が決まった時点で active committer 数を見て再見積もりすればよい。
