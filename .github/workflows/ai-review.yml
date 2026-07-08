@@ -4,6 +4,12 @@ on:
   issues:
     types:
       - labeled
+  workflow_dispatch:
+    inputs:
+      issue-number:
+        description: "Issue number to review"
+        required: true
+        type: number
 
 permissions:
   contents: read
@@ -13,16 +19,36 @@ permissions:
 jobs:
   review-issue:
     name: Review issue with OpenAI
-    if: github.event.label.name == 'ai-review'
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.label.name == 'ai-review'
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get issue data
+        id: get-issue
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const issueNumber = context.payload.inputs
+              ? Number(context.payload.inputs['issue-number'])
+              : context.issue.number;
+            const { data: issue } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber
+            });
+            core.setOutput("number", issue.number);
+            core.setOutput("title", issue.title);
+            core.setOutput("body", issue.body || "(No description provided)");
+            core.setOutput("labels", issue.labels.map(l => l.name).join(", "));
+
       - name: Detect issue language
         id: detect-language
         uses: actions/github-script@v8
         with:
           script: |
-            const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
+            const text = `${{ steps.get-issue.outputs.title }}\n${{ steps.get-issue.outputs.body }}`;
             const containsJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
             core.setOutput("language_name", containsJapanese ? "Japanese" : "English");
 
@@ -31,7 +57,7 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const labels = context.payload.issue.labels.map(l => l.name.toLowerCase());
+            const labels = "${{ steps.get-issue.outputs.labels }}".toLowerCase().split(", ");
             const isEpic = labels.includes("epic");
             core.setOutput("is_epic", isEpic ? "true" : "false");
 
@@ -64,13 +90,13 @@ jobs:
             2) Revised Acceptance Criteria Sample
           prompt: |
             Issue Title:
-            ${{ github.event.issue.title }}
+            ${{ steps.get-issue.outputs.title }}
 
             Labels:
-            ${{ join(github.event.issue.labels.*.name, ', ') }}
+            ${{ steps.get-issue.outputs.labels }}
 
             Issue Body:
-            ${{ github.event.issue.body || '(No description provided)' }}
+            ${{ steps.get-issue.outputs.body }}
 
       - name: Post AI review comment
         uses: actions/github-script@v8
@@ -89,7 +115,7 @@ jobs:
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              issue_number: ${{ steps.get-issue.outputs.number }},
               body
             });
 
@@ -100,7 +126,7 @@ jobs:
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              issue_number: ${{ steps.get-issue.outputs.number }},
               labels: ["human-review"]
             });
 
@@ -112,7 +138,7 @@ jobs:
               await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: context.issue.number,
+                issue_number: ${{ steps.get-issue.outputs.number }},
                 name: "ai-review"
               });
             } catch (error) {
