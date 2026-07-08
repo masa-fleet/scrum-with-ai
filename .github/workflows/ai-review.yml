@@ -4,12 +4,6 @@ on:
   issues:
     types:
       - labeled
-  workflow_dispatch:
-    inputs:
-      issue-number:
-        description: "Issue number to review"
-        required: true
-        type: number
 
 permissions:
   contents: read
@@ -19,47 +13,18 @@ permissions:
 jobs:
   review-issue:
     name: Review issue with OpenAI
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      github.event.label.name == 'ai-review'
+    if: github.event.label.name == 'ai-review'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get issue data
-        id: get-issue
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const issueNumber = context.payload.inputs
-              ? Number(context.payload.inputs['issue-number'])
-              : context.issue.number;
-            const { data: issue } = await github.rest.issues.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber
-            });
-            core.setOutput("number", issue.number);
-            core.setOutput("title", issue.title);
-            core.setOutput("body", issue.body || "(No description provided)");
-            core.setOutput("labels", issue.labels.map(l => l.name).join(", "));
-
       - name: Detect issue language
         id: detect-language
         uses: actions/github-script@v8
         with:
           script: |
-            const text = `${{ steps.get-issue.outputs.title }}\n${{ steps.get-issue.outputs.body }}`;
+            const text = `${context.payload.issue.title}\n${context.payload.issue.body || ""}`;
             const containsJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff66-\uff9f]/.test(text);
             core.setOutput("language_name", containsJapanese ? "Japanese" : "English");
-
-      - name: Detect issue type
-        id: detect-type
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const labels = "${{ steps.get-issue.outputs.labels }}".toLowerCase().split(", ");
-            const isEpic = labels.includes("epic");
-            core.setOutput("is_epic", isEpic ? "true" : "false");
 
       - name: Generate AI review
         id: inference
@@ -73,30 +38,31 @@ jobs:
             Review a GitHub issue and provide practical improvements in the same language as the issue.
             The detected issue language is: ${{ steps.detect-language.outputs.language_name }}.
             You MUST write the entire review in that language.
-            ${{ steps.detect-type.outputs.is_epic == 'true' && 'This issue is an Epic. Focus on:
+            If the issue has an "epic" label, focus on:
             - whether the Epic goal is clear and measurable
             - whether sub-issues are properly decomposed and cover the full scope
             - whether dependencies between sub-issues are identified
             - whether each sub-issue is small enough to complete in one sprint
-            - whether the scope boundary is explicit (what is in/out)' || 'Focus on:
+            - whether the scope boundary is explicit (what is in/out)
+            Otherwise, focus on:
             - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
             - clarity and completeness of each section
             - whether Acceptance Criteria contains clear WHAT outcomes
             - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
-            - whether expected outputs are explicit (code, document, ADR, etc.)' }}
+            - whether expected outputs are explicit (code, document, ADR, etc.)
             Keep feedback concise and actionable. Do NOT include a Strengths section.
             Format the response in markdown with 2 sections in this order:
             1) Improvement Suggestions
             2) Revised Acceptance Criteria Sample
           prompt: |
             Issue Title:
-            ${{ steps.get-issue.outputs.title }}
+            ${{ github.event.issue.title }}
 
             Labels:
-            ${{ steps.get-issue.outputs.labels }}
+            ${{ join(github.event.issue.labels.*.name, ', ') }}
 
             Issue Body:
-            ${{ steps.get-issue.outputs.body }}
+            ${{ github.event.issue.body || '(No description provided)' }}
 
       - name: Post AI review comment
         uses: actions/github-script@v8
@@ -115,7 +81,7 @@ jobs:
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ steps.get-issue.outputs.number }},
+              issue_number: context.issue.number,
               body
             });
 
@@ -126,7 +92,7 @@ jobs:
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: ${{ steps.get-issue.outputs.number }},
+              issue_number: context.issue.number,
               labels: ["human-review"]
             });
 
@@ -138,7 +104,7 @@ jobs:
               await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: ${{ steps.get-issue.outputs.number }},
+                issue_number: context.issue.number,
                 name: "ai-review"
               });
             } catch (error) {
