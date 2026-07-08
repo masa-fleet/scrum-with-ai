@@ -1,5 +1,5 @@
 {
-  "name": "branch-policy-template",
+  "name": "protect main branch",
   "target": "branch",
   "enforcement": "active",
   "conditions": {
