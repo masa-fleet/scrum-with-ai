@@ -15,5 +15,5 @@ labels:
 
 ## ✅ Acceptance Criteria
 
-- [ ] [ブランチポリシー手順]({{REPO_BLOB_MAIN}}/docs/branch-policy.md) に沿って `main` ブランチポリシーを適用している
-- [ ] 設定後、`main` への直接 push がブロックされることを確認している
+- [ ] [ブランチポリシー手順]({{REPO_BLOB_MAIN}}/docs/branch-policy.md) に沿って `main` 向け ruleset を作成し、`Active` になっている
+- [ ] ruleset で「直接 push ブロック」「強制 push ブロック」「PR レビュー必須」が有効になっている
