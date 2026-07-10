@@ -173,9 +173,10 @@ jobs:
               # Expand repository URL placeholders for setup-issue templates (e.g. {{REPO_BLOB_MAIN}}).
               server_url = os.environ.get("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
               repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
-              repo_blob_main = f"{server_url}/{repository}/blob/main" if repository else ""
-              if repo_blob_main:
-                  body = body.replace("{{REPO_BLOB_MAIN}}", repo_blob_main)
+              if not repository:
+                  raise RuntimeError("GITHUB_REPOSITORY environment variable is not set")
+              repo_blob_main = f"{server_url}/{repository}/blob/main"
+              body = body.replace("{{REPO_BLOB_MAIN}}", repo_blob_main)
 
               # Check for existing issue with the same title (open or closed)
               result = subprocess.run(
