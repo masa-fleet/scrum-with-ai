@@ -15,7 +15,5 @@ labels:
 
 ## ✅ Acceptance Criteria
 
-- [ ] `main` ブランチ向けルールセットが作成されている
-- [ ] 直接 push / 強制 push / ブランチ削除がブロックされている
-- [ ] プルリクエストレビュー必須（必要レビュアー数 1）になっている
-- [ ] [ブランチポリシー手順]({{REPO_BLOB_MAIN}}/docs/branch-policy.md) に沿って設定されている
+- [ ] [ブランチポリシー手順]({{REPO_BLOB_MAIN}}/docs/branch-policy.md) に沿って `main` ブランチポリシーを適用している
+- [ ] 設定後、`main` への直接 push がブロックされることを確認している
