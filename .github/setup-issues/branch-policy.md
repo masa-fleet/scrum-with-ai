@@ -18,11 +18,11 @@ labels:
 - [ ] `main` ブランチ向けルールセットが作成されている
 - [ ] 直接 push / 強制 push / ブランチ削除がブロックされている
 - [ ] プルリクエストレビュー必須（必要レビュアー数 1）になっている
-- [ ] [ブランチポリシー手順](../blob/main/docs/branch-policy.md) に沿って設定されている
+- [ ] [ブランチポリシー手順]({{REPO_BLOB_MAIN}}/docs/branch-policy.md) に沿って設定されている
 
 ## 📝 設定手順
 
 1. **Settings → Rules → Rulesets** を開く
 2. **New ruleset → Import a ruleset** をクリックする
-3. [`.github/branch-policy-template.json`](../blob/main/.github/branch-policy-template.json) をアップロードする
+3. [`.github/branch-policy-template.json`]({{REPO_BLOB_MAIN}}/.github/branch-policy-template.json) をアップロードする
 4. 内容を確認して **Create** をクリックする

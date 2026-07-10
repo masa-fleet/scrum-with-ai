@@ -170,6 +170,12 @@ jobs:
 
               body = content[fm_match.end():]
 
+              # Expand repository URL placeholders for setup-issue templates.
+              server_url = os.environ.get("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
+              repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
+              repo_blob_main = f"{server_url}/{repository}/blob/main" if repository else ""
+              body = body.replace("{{REPO_BLOB_MAIN}}", repo_blob_main)
+
               # Check for existing issue with the same title (open or closed)
               result = subprocess.run(
                   ["gh", "issue", "list",
