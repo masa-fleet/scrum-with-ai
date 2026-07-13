@@ -1,48 +1,49 @@
-# 🚀 Setting Up Your Repository
+# 🚀 ユーザー リポジトリのセットアップ
 
-After creating a new repository from this template, follow the steps below to finish setting it up.
-
----
-
-## Step 1 — Enable GitHub Actions
-
-GitHub Actions are enabled by default on new repositories. If you disabled them, re-enable them via **Settings → Actions → General → Allow all actions**.
+テンプレート レポジトリからユーザー リポジトリを作成した後、以下の手順でセットアップを完了する。
 
 ---
 
-## Step 2 — Create Issue Labels
+## Step 1 — GitHub Actions を有効にする
 
-This template ships with a one-time workflow that creates all [standard labels](labels.md) for you.
-
-1. Go to the **Actions** tab of your repository.
-2. In the left sidebar, select **🏷️ Setup Repository Labels**.
-3. Click **Run workflow → Run workflow** (leave the branch as `main`).
-
-   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup-labels.yml)
-
-4. Wait for the run to complete (usually under 30 seconds). All labels will be created and the workflow will **disable itself automatically** so it won't run again by accident.
-
-> **Want to recreate labels later?**  
-> Go to **Actions → 🏷️ Setup Repository Labels**, click the three-dot menu on the workflow, select **Enable workflow**, then run it again.
+ユーザー レポジトリでは GitHub Actions はデフォルトで有効。無効にした場合は **Settings → Actions → General → Allow all actions** で再度有効にする。
 
 ---
 
-## Step 3 — Apply Branch Policy
+## Step 2 — Issue ラベルを作成する
 
-Protect `main` with the branch ruleset defined in [branch-policy.md](branch-policy.md).
+テンプレート レポジトリには[標準ラベル](labels.md)を一括作成するワークフローが含まれているので、自動作成されます。もし自動作成されない場合には、以下の手順をお試しください。
 
-> **Note:** Branch protection settings are not inherited from the template automatically. Run this step manually on each new repository.
+1. ユーザー リポジトリの **Actions** タブを開く
+2. 左サイドバーで **🚀 Setup Repository** を選択
+3. **Run workflow → Run workflow** をクリック（ブランチは `main` のまま）
+
+   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup.yml)
+
+4. 実行完了を待つ（通常 30 秒以内）。すべてのラベルが作成され、ワークフローは**自動的に無効化**される
+
+> **ラベルを再作成したい場合：**
+> **Actions → 🚀 Setup Repository** のワークフローの三点メニューから **Enable workflow** を選択し、再度実行する。
 
 ---
 
-## Step 4 — Configure GitHub Projects (optional)
+## Step 3 — ブランチポリシーを適用する
 
-The labels are designed to work well with GitHub Projects views:
+[branch-policy.md](branch-policy.md) に定義されたブランチルールセットで `main` を保護する。
 
-| View name | Label filter |
-|-----------|-------------|
+> **注意：** ブランチ保護設定はテンプレート レポジトリから自動的に継承されない。新しいユーザー レポジトリごとに手動で設定する必要がある。
+
+---
+
+## Step 4 — GitHub Projects を設定する（任意）
+
+ラベルは GitHub Projects のビューと組み合わせて使える。
+
+| ビュー名 | ラベルフィルター |
+| --- | --- |
 | `pbi` | `pbi` |
 | `epic` | `epic` |
 | `risk` | `risk` |
 
-See [labels.md](labels.md) for the full label reference and usage guidelines.
+ラベルの一覧と使い方は [labels.md](labels.md) を参照。
+
