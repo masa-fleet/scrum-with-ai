@@ -41,9 +41,9 @@ jobs:
             If the issue has an "epic" label, focus on:
             - whether the Epic goal is clear and measurable
             - whether sub-issues are properly decomposed and cover the full scope
-            - whether dependencies between sub-issues are identified
-            - whether each sub-issue is small enough to complete in one sprint
             - whether the scope boundary is explicit (what is in/out)
+            - whether dependencies and sequencing between sub-issues are identified where needed
+            - whether the decomposition supports incremental delivery across PBIs
             Otherwise, focus on:
             - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
             - clarity and completeness of each section
