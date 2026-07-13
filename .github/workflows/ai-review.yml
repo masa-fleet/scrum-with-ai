@@ -40,10 +40,9 @@ jobs:
             You MUST write the entire review in that language.
             If the issue has an "epic" label, focus on:
             - whether the Epic goal is clear and measurable
-            - whether sub-issues are properly decomposed and cover the full scope
             - whether the scope boundary is explicit (what is in/out)
-            - whether dependencies and sequencing between sub-issues are identified where needed
-            - whether the decomposition supports incremental delivery across PBIs
+            - whether Definition of Done (DoD) is defined with clear completion criteria
+            - whether success metrics or expected outcomes are specified
             Otherwise, focus on:
             - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
             - clarity and completeness of each section
