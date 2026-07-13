@@ -6,7 +6,7 @@
 
 ## Step 1 — GitHub Actions を有効にする
 
-新しいリポジトリでは GitHub Actions はデフォルトで有効。無効にした場合は **Settings → Actions → General → Allow all actions** で再度有効にする。
+ユーザー レポジトリでは GitHub Actions はデフォルトで有効。無効にした場合は **Settings → Actions → General → Allow all actions** で再度有効にする。
 
 ---
 
