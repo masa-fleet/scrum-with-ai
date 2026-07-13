@@ -32,22 +32,27 @@ jobs:
         with:
           model: openai/gpt-4o-mini
           temperature: "0.2"
+          max-tokens: "4096"
           system-prompt: |
             You are a Scrum product backlog quality reviewer.
             Review a GitHub issue and provide practical improvements in the same language as the issue.
             The detected issue language is: ${{ steps.detect-language.outputs.language_name }}.
             You MUST write the entire review in that language.
-            Focus on:
+            If the issue has an "epic" label, focus on:
+            - whether the Epic goal is clear and measurable
+            - whether the scope boundary is explicit (what is in/out)
+            - whether Definition of Done (DoD) is defined with clear completion criteria
+            - whether success metrics or expected outcomes are specified
+            Otherwise, focus on:
             - quality of the standard sections: Goal, Background & Context, Acceptance Criteria, Additional Notes
             - clarity and completeness of each section
             - whether Acceptance Criteria contains clear WHAT outcomes
             - whether detailed HOW guidance is in Additional Notes/Comments instead of AC
             - whether expected outputs are explicit (code, document, ADR, etc.)
-            Keep feedback concise and actionable.
-            Format the response in markdown with 3 sections in this order:
-            1) Strengths
-            2) Improvement Suggestions
-            3) Revised Acceptance Criteria Sample
+            Keep feedback concise and actionable. Do NOT include a Strengths section.
+            Format the response in markdown with 2 sections in this order:
+            1) Improvement Suggestions
+            2) Revised Acceptance Criteria Sample
           prompt: |
             Issue Title:
             ${{ github.event.issue.title }}
