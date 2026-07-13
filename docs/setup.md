@@ -15,15 +15,15 @@
 テンプレートには[標準ラベル](labels.md)を一括作成するワークフローが含まれている。
 
 1. リポジトリの **Actions** タブを開く
-2. 左サイドバーで **🏷️ Setup Repository Labels** を選択
+2. 左サイドバーで **🚀 Setup Repository** を選択
 3. **Run workflow → Run workflow** をクリック（ブランチは `main` のまま）
 
-   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup-labels.yml)
+   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup.yml)
 
 4. 実行完了を待つ（通常 30 秒以内）。すべてのラベルが作成され、ワークフローは**自動的に無効化**される
 
 > **ラベルを再作成したい場合：**
-> **Actions → 🏷️ Setup Repository Labels** のワークフローの三点メニューから **Enable workflow** を選択し、再度実行する。
+> **Actions → 🚀 Setup Repository** のワークフローの三点メニューから **Enable workflow** を選択し、再度実行する。
 
 ---
 
