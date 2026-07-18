@@ -3,10 +3,22 @@ name: "🔍 Code scanning - CodeQL"
 on:
   push:
     branches: ["main"]
+    paths:
+      - "**.js"
+      - "**.ts"
+      - "**.jsx"
+      - "**.tsx"
+      - "**.mjs"
+      - "**.cjs"
   pull_request:
     branches: ["main"]
-  schedule:
-    - cron: "30 1 * * 0"  # 毎週日曜 1:30 UTC
+    paths:
+      - "**.js"
+      - "**.ts"
+      - "**.jsx"
+      - "**.tsx"
+      - "**.mjs"
+      - "**.cjs"
 
 permissions:
   contents: read
