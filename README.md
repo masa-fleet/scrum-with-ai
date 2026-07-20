@@ -1,21 +1,44 @@
 # scrum-with-ai
-A template repository to help Scrum teams systematically harness AI for solution discovery and delivery
 
-## Getting Started
+AI を活用した Scrum の立ち上げを、テンプレートと初期 Issue で支援するテンプレート レポジトリ。
 
-### Step 1 — Copy this template
+## 用語
 
-1. Click the **[Use this template]** button at the top of this page (next to the green **Code** button).
+- **テンプレート レポジトリ**: この `masa-fleet/scrum-with-ai` リポジトリ
+- **ユーザー レポジトリ**: テンプレート レポジトリをコピーして作成する各プロジェクト用リポジトリ
 
-   > Can't find the button? Make sure you are viewing this repository on **GitHub.com** (not a cloned local copy). The button appears near the top-right of the repository page, alongside **Star** and **Fork**.
+## 作成背景
 
-   ![Use this template button location](https://docs.github.com/assets/cb-76823/mw-1440/images/help/repository/use-this-template-button.webp)
+- プロジェクト開始時に毎回発生するセットアップ作業を減らしたい
+- 必要な作業を Issue 化し、抜け漏れなく進められるようにしたい
+- プロジェクト完了時の知見を次のプロジェクトに返し、立ち上げを継続的に改善したい
+- AI を使った Scrum の実践を通じて、AI 駆動開発時代のチームプラクティスを整えたい
 
-2. Select **Create a new repository**.
-3. Fill in your new repository name, choose the owner (your account or an organization), set the visibility (Public or Private), and click **Create repository**.
+## ユーザーにとってのメリット
 
-Your new repository will be created with all the files from this template.
+- ユーザー レポジトリ作成後にセットアップ作業が Issue として登録されるため、開始時の抜け漏れを防げる
+- 繰り返し作業を減らし、プロジェクト固有の検討に早く着手できる
+- 新しく参加したメンバーでも、Issue を順に進めることで必要な準備を把握しやすい
+- Technical PM がいないプロジェクトでも、標準的な立ち上げ手順を再利用できる
+- 改善したテンプレートを次のプロジェクトでも使い回せる
 
-### Step 2 — Finish setting up your repository
+## 使い方
 
-After creating your repository from this template, follow the **[setup guide](docs/setup.md)** to create the standard labels and configure GitHub Projects views.
+### 1. テンプレート レポジトリからユーザー レポジトリを作成する
+
+1. GitHub 上で **Use this template** をクリックする
+2. **Create a new repository** を選ぶ
+3. リポジトリ名・オーナー・公開範囲を設定して **Create repository** をクリックする
+
+![Use this template ボタンの位置](https://docs.github.com/assets/cb-76823/mw-1440/images/help/repository/use-this-template-button.webp)
+
+### 2. ユーザー レポジトリのセットアップを進める
+
+- ユーザー レポジトリ作成後、作成されたセットアップ用 Issue を起点に初期設定を進める
+- ラベル作成やブランチポリシー設定などの詳細は [docs/setup.md](docs/setup.md) を参照する
+
+### 3. ユーザー レポジトリの README を更新する
+
+- この README はテンプレート レポジトリの説明です
+- ユーザー レポジトリを作成したら、プロジェクトの目的・使い方・開発ルールに合わせて README を更新してください
+- テンプレートの説明が残ったままだと、利用者がそのユーザー レポジトリの目的を判断しにくくなります
