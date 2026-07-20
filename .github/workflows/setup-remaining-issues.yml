@@ -1,0 +1,66 @@
+name: 🚀 Create remaining setup issues
+
+# GitHub Projects' "Auto-add to project" workflow only picks up issues that are
+# newly created or updated *after* it has been enabled. If setup.yml were to
+# create all setup issues right away, they would already exist before the
+# Project Board is linked and Auto-add is turned on (which happens while
+# completing the Project Board setup issue), so they would never show up on
+# the board.
+#
+# To work around this, setup.yml only creates the Project Board setup issue
+# (.github/setup-issues/github-project-board.md). Once the user closes that
+# issue — signalling the Project Board setup is complete — this workflow
+# creates the remaining setup issues from .github/setup-issues/, which by then
+# will be correctly auto-added to the board.
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  create-remaining-setup-issues:
+    name: Create remaining setup issues
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read  # needed for checkout
+      issues: write   # needed to create issues
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check whether the closed issue is the Project Board setup issue
+        id: check
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_LABELS_JSON: ${{ toJSON(github.event.issue.labels.*.name) }}
+        run: |
+          set -e
+
+          expected_title=$(awk -F': ' '/^title:/{ $1=""; sub(/^ /,""); gsub(/^"|"$/,""); print; exit }' .github/setup-issues/github-project-board.md)
+          echo "Expected title: $expected_title"
+          echo "Actual title:   $ISSUE_TITLE"
+
+          if echo "$ISSUE_LABELS_JSON" | jq -e 'index("setup") != null' > /dev/null; then
+            has_setup_label=true
+          else
+            has_setup_label=false
+          fi
+
+          if [ "$ISSUE_TITLE" = "$expected_title" ] && [ "$has_setup_label" = "true" ]; then
+            echo "match=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "match=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create remaining setup issues
+        if: steps.check.outputs.match == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 .github/scripts/create_setup_issues.py --exclude github-project-board.md
+
+      - name: Skip (not the Project Board setup issue)
+        if: steps.check.outputs.match != 'true'
+        run: |
+          echo "Closed issue does not match the Project Board setup issue title/label. Skipping."

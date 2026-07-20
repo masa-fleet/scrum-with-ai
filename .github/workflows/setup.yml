@@ -1,8 +1,10 @@
 name: 🚀 Setup Repository
 
 # This workflow is intended to run ONCE when this template repository is first copied.
-# It creates all standard labels defined in docs/labels.md and opens initial setup issues
-# from the Markdown files under .github/setup-issues/.
+# It creates all standard labels defined in docs/labels.md and opens the Project Board
+# setup issue (.github/setup-issues/github-project-board.md). The remaining setup issues
+# are created afterwards by setup-remaining-issues.yml, once that issue is closed — see
+# that workflow for why they can't all be created up front.
 # After a successful run the workflow disables itself so it won't run again.
 #
 # How to use:
@@ -115,7 +117,7 @@ jobs:
           echo "✅ All labels created successfully."
 
   create-setup-issues:
-    name: Create setup issues from Markdown files
+    name: Create the Project Board setup issue
     needs: setup-labels
     runs-on: ubuntu-latest
     permissions:
@@ -123,84 +125,22 @@ jobs:
       issues: write   # needed to create issues
       actions: write  # needed to disable this workflow after setup
 
+    # Only the Project Board setup issue is created here. GitHub Projects'
+    # "Auto-add to project" workflow only picks up issues that are newly
+    # created/updated *after* it has been enabled, which happens as part of
+    # completing that issue. Creating every setup issue up front would mean
+    # they can never be auto-added to the board. The remaining setup issues
+    # are created afterwards by setup-remaining-issues.yml, once the
+    # Project Board setup issue is closed.
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create issues
+      - name: Create Project Board setup issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 << 'EOF'
-          import glob
-          import os
-          import re
-          import subprocess
-          import sys
-
-          try:
-              import yaml
-          except ImportError:
-              print("PyYAML not found, installing...")
-              subprocess.run([sys.executable, "-m", "pip", "install", "pyyaml", "-q"], check=True)
-              import yaml
-
-          issues_dir = ".github/setup-issues"
-          files = sorted(glob.glob(os.path.join(issues_dir, "*.md")))
-
-          if not files:
-              print(f"No Markdown files found in {issues_dir}, skipping.")
-              sys.exit(0)
-
-          for filepath in files:
-              print(f"Processing: {filepath}")
-              content = open(filepath, encoding="utf-8").read()
-
-              # Parse frontmatter
-              fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
-              if not fm_match:
-                  print(f"  Warning: No frontmatter found in {filepath}, skipping.")
-                  continue
-
-              metadata = yaml.safe_load(fm_match.group(1))
-              title = (metadata or {}).get("title", "").strip()
-              if not title:
-                  print(f"  Warning: No title found in frontmatter of {filepath}, skipping.")
-                  continue
-
-              body = content[fm_match.end():]
-
-              # Check for existing issue with the same title (open or closed)
-              result = subprocess.run(
-                  ["gh", "issue", "list",
-                   "--search", f'"{title}" in:title',
-                   "--state", "all",
-                   "--json", "number",
-                   "--jq", ".[0].number // empty"],
-                  capture_output=True, text=True, check=True
-              )
-              if result.stdout.strip():
-                  print(f"  Issue already exists (#{result.stdout.strip()}): {title!r}, skipping.")
-                  continue
-
-              # Create the issue
-              create = subprocess.run(
-                  ["gh", "issue", "create",
-                   "--title", title,
-                   "--body", body,
-                   "--label", "pbi",
-                   "--label", "setup"],
-                  capture_output=True, text=True
-              )
-              if create.returncode == 0:
-                  print(f"  ✅ Created issue: {title!r}")
-              else:
-                  print(f"  ❌ Failed to create issue: {title!r}")
-                  print(create.stderr)
-                  sys.exit(1)
-
-          print("✅ All setup issues processed.")
-          EOF
+          python3 .github/scripts/create_setup_issues.py --only github-project-board.md
 
       - name: Disable this workflow after initial setup
         if: github.event_name == 'push'
