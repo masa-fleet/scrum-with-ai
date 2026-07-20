@@ -4,13 +4,13 @@ Scrum Guide 2020 では、Scrum Team は Product Owner、Scrum Master、Develope
 
 | 責務 | 主な成果への責務 | 典型的なアクション |
 |---|---|---|
-| Product Owner | プロダクトから生まれる価値を最大化する | Product Goal を明確にする、Product Backlog を順序付けする、ステークホルダーの期待と Developers の理解をそろえる |
+| Product Owner | Scrum Team の仕事から生まれるプロダクトの価値を最大化する | Product Goal を明確にする、Product Backlog を順序付けする、ステークホルダーの期待と Developers の理解をそろえる |
 | Scrum Master | Scrum Team の有効性を高める | Scrum をチームと組織に浸透させる、障害を取り除く、Scrum Events を成立させる、改善を促す |
 | Developers | 毎 Sprint で利用可能な Increment を作る | Product Owner と認識をそろえる、Sprint Backlog を作る、日々計画を調整する、Definition of Done を満たす |
 
 ## Product Owner
 
-- 成果責務: Scrum Team の仕事から生まれる価値を最大化する
+- 成果責務: Scrum Team の仕事から生まれるプロダクトの価値を最大化する
 - アクション:
   - Product Goal を明確にする
   - Product Backlog Items を明確にする
