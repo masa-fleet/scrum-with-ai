@@ -2,6 +2,8 @@
 
 Scrum Guide 2020 では、Scrum Team は Product Owner、Scrum Master、Developers で構成される。
 
+各責務は分かれていても、成果は 1 つの Scrum Team として作る。価値を届けるには互いの状況を共有し、必要に応じて助け合いながら、Sprint ごとに成果と進め方を検査し、Product Backlog や働き方を見直し、自己管理で前進する。
+
 | 責務 | 主な成果への責務 | 典型的なアクション |
 |---|---|---|
 | Product Owner | Scrum Team の仕事から生まれるプロダクトの価値を最大化する | Product Goal を明確にする、Product Backlog を順序付けする、ステークホルダーの期待と Developers の理解をそろえる |
@@ -37,13 +39,6 @@ Scrum Guide 2020 では、Scrum Team は Product Owner、Scrum Master、Develope
   - Sprint Goal に向けて日々の進め方を見直す
   - Definition of Done に沿って品質を作り込む
   - 互いに専門職として支え合う
-
-## 共通
-
-- 3者は 1 つの Scrum Team として協働する
-- 責務は分かれていても、価値を届けるには互いの状況を共有し、必要に応じて助け合う
-- Scrum Team は Sprint ごとに成果と進め方を検査し、Product Backlog や働き方を見直す
-- 特定の人への依存を減らし、自己管理で前進する
 
 ## 公式ドキュメント
 
