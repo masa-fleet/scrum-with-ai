@@ -3,22 +3,8 @@ name: "🔍 Code scanning - CodeQL"
 on:
   push:
     branches: ["main"]
-    paths:
-      - "**.js"
-      - "**.ts"
-      - "**.jsx"
-      - "**.tsx"
-      - "**.mjs"
-      - "**.cjs"
   pull_request:
     branches: ["main"]
-    paths:
-      - "**.js"
-      - "**.ts"
-      - "**.jsx"
-      - "**.tsx"
-      - "**.mjs"
-      - "**.cjs"
 
 permissions:
   contents: read
@@ -31,7 +17,8 @@ jobs:
 
     strategy:
       matrix:
-        language: ["javascript"]
+        language: ["cpp", "csharp", "go", "java", "javascript", "python", "ruby"]
+      fail-fast: false
 
     steps:
       - name: Checkout repository
