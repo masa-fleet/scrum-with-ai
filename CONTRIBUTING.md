@@ -14,7 +14,7 @@
 ## 貢献の流れ（Microsoft 社内メンバー向け）
 
 1. Issue 作成（目的・要件を記載）
-2. Cloud Agent に割り当て
+2. Copilot cloud agent に割り当て
 3. PR をレビュー・承認・マージ
 
 ## ブランチ・プルリクエストのルール
