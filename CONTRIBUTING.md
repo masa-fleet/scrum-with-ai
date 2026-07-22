@@ -8,7 +8,7 @@
 
 ## コントリビューションの範囲
 
-- **Microsoft 社内メンバー:** Issue 登録・レビュー・承認、Cloud Agent への指示出し
+- **Microsoft 社内メンバー:** Issue 登録・レビュー・承認、Copilot cloud agent への指示出し
 - **Microsoft 社外の方:** Issue 登録のみ
 
 ## 貢献の流れ（Microsoft 社内メンバー向け）
