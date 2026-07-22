@@ -8,10 +8,10 @@
 
 ## コントリビューションの範囲
 
-- **Microsoft 社内メンバー:** Issue 登録・レビュー・承認、Copilot cloud agent への指示出し
-- **Microsoft 社外の方:** Issue 登録のみ
+- **事前承認済みの Collaborator:** Issue 登録・レビュー・承認、Copilot cloud agent への指示出し
+- **その他の方:** Issue 登録のみ
 
-## 貢献の流れ（Microsoft 社内メンバー向け）
+## 貢献の流れ（事前承認済みの Collaborator 向け）
 
 1. Issue 作成（目的・要件を記載）
 2. Copilot cloud agent に割り当て
