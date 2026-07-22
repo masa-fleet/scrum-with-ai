@@ -32,4 +32,3 @@
 ## 行動規範
 
 - [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) に従う。
-- 質問は [opencode@microsoft.com](mailto:opencode@microsoft.com) へ。
