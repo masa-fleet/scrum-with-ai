@@ -2,9 +2,9 @@
 
 ## ポリシー
 
-- **このリポジトリのコード・ドキュメントは GitHub Copilot（Cloud Agent を含む）が作成する。** 人間はレビューと承認のみ担当する。
-- ファイルを直接編集する代わりに、GitHub Copilot Cloud Agent に指示を出して変更を生成する。
-- GitHub Copilot Cloud Agent を使ったことがない方は [Expand your team with Copilot](https://github.com/skills/expand-your-team-with-copilot) を参照。
+- **AI がコード・ドキュメントを作成。** 人間はレビューと承認のみ担当する。
+- Cloud Agent に指示して変更を生成する。
+- [Expand your team with Copilot](https://github.com/skills/expand-your-team-with-copilot) を参照。
 
 ## コントリビューションの範囲
 
@@ -13,9 +13,9 @@
 
 ## 貢献の流れ（Microsoft 社内メンバー向け）
 
-1. Issue を作成し、変更の目的・要件を記載する。
-2. GitHub Copilot Cloud Agent に Issue を割り当てて変更を生成させる。
-3. 生成されたプルリクエストをレビューし、承認・マージする。
+1. Issue 作成（目的・要件を記載）
+2. Cloud Agent に割り当て
+3. PR をレビュー・承認・マージ
 
 ## ブランチ・プルリクエストのルール
 
@@ -25,9 +25,9 @@
 
 ## Issue 登録のガイドライン（全員共通）
 
-- 既存の Issue を検索し、重複を確認する。
-- タイトルは変更内容が一目でわかるように記載する。
-- 背景・目的・受け入れ基準を明記する。
+- 重複を確認する。
+- タイトルは明確に記載する。
+- 背景・目的・受け入れ基準を記載する。
 
 ## 行動規範
 
