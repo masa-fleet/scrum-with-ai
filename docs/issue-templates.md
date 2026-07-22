@@ -34,7 +34,13 @@ flowchart TD
 
 ## 使い方の流れ
 
+### 作業の分割（Epic → PBI → Task）
+
 1. まず PO が Epic を作成する
 2. Epic を元に、PO と Developers（Dev Lead）が PBI に分割する
 3. Sprint で着手する PBI に対して、必要なら Developers が Task を追加する
-4. セキュリティを含むリスクを見つけたら、作業階層とは別に Risk を作成して管理する
+
+### リスク管理（Risk）
+
+- セキュリティを含むリスクを見つけたら、上記の作業階層とは別にいつでも Risk を作成する
+- Risk は Epic / PBI / Task の流れに依存しない独立した Issue として管理する
