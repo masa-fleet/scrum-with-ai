@@ -80,6 +80,7 @@ def create_issues(files):
             continue
 
         body = content[fm_match.end():]
+        body = expand_repository_placeholders(body)
 
         # Check for existing issue with the same title (open or closed)
         result = subprocess.run(
@@ -113,9 +114,22 @@ def create_issues(files):
     print("✅ All setup issues processed.")
 
 
+def expand_repository_placeholders(body):
+    server_url = os.environ.get("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
+    repository = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    if not repository:
+        raise RuntimeError("GITHUB_REPOSITORY environment variable is not set")
+
+    repo_blob_main = f"{server_url}/{repository}/blob/main"
+    return body.replace("{{REPO_BLOB_MAIN}}", repo_blob_main)
+
+
 def main():
     args = parse_args()
     files = select_files(args.only, args.exclude)
+    if args.only and not files:
+        print(f"No setup issue templates matched --only: {', '.join(args.only)}")
+        sys.exit(1)
     create_issues(files)
 
 

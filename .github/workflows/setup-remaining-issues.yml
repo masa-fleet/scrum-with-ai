@@ -37,7 +37,7 @@ jobs:
         run: |
           set -e
 
-          expected_title=$(awk -F': ' '/^title:/{ $1=""; sub(/^ /,""); gsub(/^"|"$/,""); print; exit }' .github/setup-issues/github-project-board.md)
+          expected_title=$(sed -n 's/^title:[[:space:]]*//p' .github/setup-issues/github-project-board.md | head -n 1 | sed 's/^"//; s/"$//')
           echo "Expected title: $expected_title"
           echo "Actual title:   $ISSUE_TITLE"
 
