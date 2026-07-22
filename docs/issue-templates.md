@@ -7,7 +7,7 @@
 | テンプレート | 使う場面 | 主に作成する人 | 親子関係 |
 | --- | --- | --- | --- |
 | Epic | 複数 Sprint にまたがる大きな作業を整理したいとき | PO | 親。複数の PBI を持つ |
-| PBI | Epic を 1 Sprint で実装できる大きさに分割したいとき | PO、Developers（Dev Lead） | Epic の子。必要に応じて複数の Task を持つ |
+| PBI（Product Backlog Item） | Epic を 1 Sprint で実装できる大きさに分割したいとき | PO、Developers（Dev Lead） | Epic の子。必要に応じて複数の Task を持つ |
 | Task | PBI を進めるための具体的な作業を分けたいとき | Developers | PBI の子 |
 | Risk | セキュリティを含むプロジェクトのリスクを管理したいとき | チーム全員 | 独立。Epic / PBI / Task の親子関係に含まれない |
 
