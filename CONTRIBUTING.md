@@ -3,7 +3,7 @@
 ## ポリシー
 
 - **AI がコード・ドキュメントを作成。** 人間はレビューと承認のみ担当する。
-- Cloud Agent に指示して変更を生成する。
+- Copilot cloud agent に指示して変更を生成する。
 - [Expand your team with Copilot](https://github.com/skills/expand-your-team-with-copilot) を参照。
 
 ## コントリビューションの範囲
