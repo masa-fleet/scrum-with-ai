@@ -25,6 +25,8 @@
 > **ラベルを再作成したい場合：**
 > **Actions → 🚀 Setup Repository** のワークフローの三点メニューから **Enable workflow** を選択し、再度実行する。
 
+Issue Template の選び方や Epic・PBI・Task・Risk の関係は [issue-templates.md](issue-templates.md) を参照。
+
 ---
 
 ## Step 3 — ブランチポリシーを適用する
@@ -46,4 +48,3 @@
 | `risk` | `risk` |
 
 ラベルの一覧と使い方は [labels.md](labels.md) を参照。
-
