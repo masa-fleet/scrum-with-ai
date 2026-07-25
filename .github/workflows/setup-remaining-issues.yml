@@ -24,6 +24,7 @@ jobs:
     permissions:
       contents: read  # needed for checkout
       issues: write   # needed to create issues
+      actions: write  # needed to disable this workflow after setup
 
     steps:
       - name: Checkout repository
@@ -59,6 +60,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 .github/scripts/create_setup_issues.py --exclude github-project-board.md
+
+      - name: Disable this workflow after setup
+        if: steps.check.outputs.match == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow disable "setup-remaining-issues.yml"
+          echo "✅ Workflow disabled. Remaining setup issues have been created and this workflow will not run automatically again."
 
       - name: Skip (not the Project Board setup issue)
         if: steps.check.outputs.match != 'true'
