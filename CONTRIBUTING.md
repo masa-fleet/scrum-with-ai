@@ -14,9 +14,11 @@
 ## 貢献の流れ（事前承認済みの Collaborator 向け）
 
 1. Issue 作成（`PBI` Issue Template を使用する。必須項目は全て記入する。）
-2. PO によるレビュー。承認後 `Approved` 状態に変更する。
-3. PBIにアサインされた人が Issue に `ai-review` ラベルを付与し、Copilot cloud agent に割り当てる。
-4. PR をレビュー・承認・マージ
+2. PBI 作成後、PBI に `ai-review` ラベルを付与し、AI にレビューしてもらう。
+3. PBI 作成者は AI のフィードバックを元に PBI を更新する。
+4. PO によるレビュー。承認後 `Approved` 状態に変更する。
+5. Copilot cloud agent に割り当て
+6. PR をレビュー・承認・マージ
 
 ## ブランチ・プルリクエストのルール
 
