@@ -15,7 +15,7 @@
 
 1. Issue 作成（`PBI` Issue Template を使用する。必須項目は全て記入する。）
 2. PO によるレビュー。承認後 `Approved` 状態に変更する。
-3. PBIにアサインされた人が Issue に `ai-review` ラベルを付与し、結果を反映してから Copilot cloud agent に割り当てる。
+3. PBIにアサインされた人が Issue に `ai-review` ラベルを付与し、Copilot cloud agent に割り当てる。
 4. PR をレビュー・承認・マージ
 
 ## ブランチ・プルリクエストのルール
