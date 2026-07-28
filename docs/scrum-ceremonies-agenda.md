@@ -3,7 +3,7 @@
 ## Backlog Refinement（60 分）
 
 - ファシリテーター: PO
-- 25 分: 将来 2- 3 Sprint 分の候補 PBI の優先度を調整
+- 25 分: 将来 2-3 Sprint 分の候補 PBI の優先度を調整
 - 20 分: 次 Sprint 向け未 `Approved` PBI のレビュー
 - 10 分: 次回までの更新担当と次アクション決定
 - 5 分: クロージング
