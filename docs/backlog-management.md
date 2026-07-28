@@ -20,7 +20,7 @@
    - `New` で起票する。
    - 実施したい Sprint に追加する。実施 Sprint は Backlog Refinement ミーティングにて他の PBI との優先度を考慮して最終決定される。
 2. **Backlog Refinement（Scrum Team + Stakeholders）**
-   - Epic の分割に抜け漏れが無いかを議論する。
+   - Epic の分割に抜け漏れがないかを議論する。
    - Sprint Goal やプロジェクトの優先度を元に PBI を優先付けする。
    - 高優先度の PBI をレビューし `Approved` 状態にする。 (`Approved` 在庫全体を 平均 Velocity の 1.5〜2 倍で維持するのが理想的)
 3. **Sprint Planning（Scrum Team）**
