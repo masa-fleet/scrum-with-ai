@@ -11,8 +11,8 @@
 ## Sprint Planning（60 分）
 
 - ファシリテーター: Scrum Master
-- 5 分: 前 Sprint 実績を踏まえた Velocity 確認
-- 5 分: チームカレンダー確認
+- 5 分: 前 Sprint 実績を踏まえた Velocity とチームカレンダー確認
+- 5 分: PO による Sprint Goal 説明
 - 20 分: Sprint Backlog の議論と確定
 - 15 分: 各 PBI の内容と見積もり確認
 - 10 分: PBI 担当者決定
