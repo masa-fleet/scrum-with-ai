@@ -7,7 +7,7 @@
 | `In Progress` | 現在の Sprint で実装中。 | Developers |
 | `Done` | 受け入れ条件を満たした PBI。 | Scrum Team |
 
-## Scrum Team が PBI を作成できる理由
+## Scrum Team の誰もが PBI を作成できる
 
 Scrum Team の誰もが PBI を作成できる。理由は以下の通り。
 
@@ -41,5 +41,5 @@ Scrum Team の誰もが PBI を作成できる。理由は以下の通り。
 ## 運用ルール
 
 - Sprint Planning で投入する PBI は事前に `Approved` にする。Scrum Team の時間を効果的に使うために、特別な事情が無い限り `Approved` 状態でない PBI は Sprint Planning では扱わない。
-- `Approved` の在庫を Sprint 容量の 1.5〜2 倍で維持する。欲を言えば、3 - 4 Sprint 先の PBI を (タイトル記入だけでも良いので) 準備する。
+- `Approved` の在庫を Sprint 容量の 1.5〜2 倍で維持する。理想的には 3 - 4 Sprint 先の PBI を (タイトル記入だけでも良いので) 準備する。
 - セレモニー別アジェンダは [scrum-ceremonies-agenda.md](scrum-ceremonies-agenda.md) を参照する。
