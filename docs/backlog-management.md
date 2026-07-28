@@ -35,4 +35,4 @@
 
 - Sprint Planning で投入する PBI は事前に `Approved` にする。
 - `Approved` の在庫を Sprint 容量の 1.5〜2 倍で維持する。
-- セレモニー別アジェンダは [docs/scrum-ceremonies-agenda.md](docs/scrum-ceremonies-agenda.md) を参照する。
+- セレモニー別アジェンダは [scrum-ceremonies-agenda.md](scrum-ceremonies-agenda.md) を参照する。
