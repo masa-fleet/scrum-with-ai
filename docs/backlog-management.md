@@ -7,6 +7,12 @@
 | `In Progress` | 現在の Sprint で実装中。 | Developers |
 | `Done` | 受け入れ条件を満たした PBI。 | Scrum Team |
 
+## PBI は Scrum Team の誰でも作成可能
+
+- Scrum Team の誰もが PBI を作成できる。
+- 誰もが意見やアイディアを提供できるオープンな環境づくりにつながる。
+- 一番その分野に詳しい人が書くことで、非効率な確認や応答を減らせる。
+
 ## `Approved` までの手順
 
 1. PBI Issue Template の必須項目と見積もり (Effort) を記入する。
