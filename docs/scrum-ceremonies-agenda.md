@@ -1,26 +1,26 @@
 # Scrum Ceremonies Agenda
 
-## Backlog Refinement
+## Backlog Refinement（60 分）
 
-- Epic の分割に抜け漏れがないかを確認する。
-- Sprint Goal とプロジェクト優先度で PBI を優先付けする。
-- 高優先度 PBI を `Approved` に更新可能か確認する。
-- `Approved` 在庫を平均 Velocity の 1.5〜2 倍で維持できているか確認する。
+- ファシリテーター: PO
+- 20 分: 次 Sprint 向け未 `Approved` PBI のレビュー
+- 25 分: Sprint 候補 PBI の内容・優先度・依存関係の確認
+- 10 分: 次回までの更新担当と次アクション決定
+- 5 分: クロージング
 
-## Sprint Planning
+## Sprint Planning（60 分）
 
-- Sprint Goal を確認する。
-- 優先度、Velocity、PBI の合計 Effort で Sprint Backlog を確定する。
-- 実装対象 PBI を `Approved` から `In Progress` に更新する。
+- ファシリテーター: Scrum Master
+- 5 分: 前 Sprint 実績を踏まえた Velocity 確認
+- 5 分: チームカレンダー確認
+- 20 分: Sprint Backlog の議論と確定
+- 15 分: 各 PBI の内容と見積もり確認
+- 10 分: PBI 担当者決定
+- 5 分: クロージング
 
-## Sprint Review / Demo
+## Sprint Review / Demo（60 分）
 
-- `Done` PBI をデモする。
-- 受け入れ条件を PO が検証する。
-- 未達成なら PBI を `Done` から `In Progress` に戻す。
-- 追加実装事項は新規 PBI として登録する。
-
-## Retrospective
-
-- うまくいった点と改善点を整理する。
-- 次 Sprint で実施する改善アクションを PBI 化する。
+- ファシリテーター: Scrum Master
+- 5 分: オープニングと Sprint Goal 再確認
+- 50 分: 完了 PBI のデモ、受け入れ確認、フィードバック収集
+- 5 分: クロージング
