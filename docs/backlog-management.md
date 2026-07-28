@@ -7,7 +7,7 @@
 | `In Progress` | 現在の Sprint で実装中。 | Developers |
 | `Done` | 受け入れ条件を満たした PBI。 | Scrum Team |
 
-## PBI は Scrum Team の誰でも作成可能
+## Scrum Team が PBI を作成できる理由
 
 Scrum Team の誰もが PBI を作成できる。理由は以下の通り。
 
