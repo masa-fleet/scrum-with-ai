@@ -16,9 +16,9 @@ Scrum Team の誰もが PBI を作成できる。理由は以下の通り。
 
 ## `Approved` までの手順
 
-1. PBI Issue Template の必須項目と見積もり (Effort) を記入する。
+1. PBI Issue Template の必須項目と見積もり (Estimate) を記入する。
 2. `ai-review` ラベルを付けて AI レビューを実行する。
-3. AI フィードバックを反映し、必要に応じて Dev Lead / DS Lead に相談する。
+3. AI フィードバックを反映し、必要に応じて Dev Lead / DS Lead に内容と Estimate を相談する。
 4. `human-review` ラベルが付いた状態で PO が確認し、承認後に `Approved` へ更新する。
 
 ## ワークフロー
@@ -31,7 +31,7 @@ Scrum Team の誰もが PBI を作成できる。理由は以下の通り。
    - Sprint Goal やプロジェクトの優先度を元に PBI を優先付けする。
    - 高優先度の PBI をレビューし `Approved` 状態にする。 (`Approved` 在庫全体を 平均 Velocity の 1.5〜2 倍で維持するのが理想的)
 3. **Sprint Planning（Scrum Team）**
-   - 優先度、Velocity、PBI の合計 Effort を考慮して Sprint Backlog を確定する。
+   - 優先度、Velocity、PBI の合計 Estimate を考慮して Sprint Backlog を確定する。
    - Sprint で実装する PBI を `Approved` から `In Progress` に変更する。
 4. **Sprint Review / Demo（Scrum Team + Stakeholders）**
    - `Done` PBI のデモを実施し、受け入れ条件を PO が検証する (Developers は PR でレビュー済み)。
