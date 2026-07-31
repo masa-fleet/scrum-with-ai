@@ -1,5 +1,5 @@
-name: 📋 Product Backlog Item (PBI)
-description: Use this template to describe a new product backlog item for the Scrum team.
+name: 📋 プロダクトバックログ項目 (PBI)
+description: このテンプレートで Scrum チームの新しい PBI を定義できます。
 title: "[PBI] "
 labels:
   - pbi
@@ -7,16 +7,16 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Product Backlog Item
-        Fill in the sections below to help the team — and AI assistants — quickly understand what needs to be built and why.
+        ## プロダクトバックログ項目
+        何を、なぜ作るのかをチームと AI 補助システムがすぐに理解できるよう、下記を記入してください。
 
   - type: textarea
     id: goal
     attributes:
       label: "🎯 Goal"
-      description: "What outcome should be achieved when this PBI is done? Focus on WHAT to deliver."
+      description: "この PBI が完了したときに達成する状態（成果）を記載してください。"
       placeholder: |
-        e.g. Enable users to reset their password by email so they can recover account access without support help.
+        例: ユーザーがパスワード再設定メールでアカウント復旧できるようにし、サポート依存を下げる。
     validations:
       required: true
 
@@ -24,9 +24,9 @@ body:
     id: background
     attributes:
       label: "📖 Background & Context"
-      description: "Why is this needed now? Explain the problem, impact, and any useful links/context."
+      description: "なぜ今必要か、問題・影響・関連情報を簡潔に説明してください。"
       placeholder: |
-        e.g. Users who forget passwords cannot log in, which increases support tickets and causes drop-off.
+        例: パスワードを忘れた場合にログイン不能になり、サポート依頼が増加して離脱が起きているため。
     validations:
       required: true
 
@@ -34,11 +34,11 @@ body:
     id: acceptance-criteria
     attributes:
       label: "✅ Acceptance Criteria"
-      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes. Focus on WHAT outcomes are expected, and avoid describing HOW to implement them."
+      description: "この PBI を完了と見なす条件をチェックリストで記載してください。実装方法ではなく、達成基準を中心に書きます。"
       placeholder: |
-        - [ ] Users can request a password reset from the sign-in page.
-        - [ ] Users receive a valid reset email and can set a new password.
-        - [ ] Users can sign in successfully with the updated password.
+        - [ ] ユーザーはログイン画面からパスワード再設定を申請できる。
+        - [ ] 再設定メールが送信され、リンクから新しいパスワードを設定できる。
+        - [ ] 新しいパスワードでログインできる状態になる。
       value: |
         - [ ] 
         - [ ] 
@@ -50,7 +50,7 @@ body:
     id: notes
     attributes:
       label: "📝 Additional Notes"
-      description: "Optional: technical hints, design constraints, dependencies, or anything useful for AI-assisted planning."
-      placeholder: "e.g. related PRs, API constraints, performance requirements, etc."
+      description: "任意: 技術的なヒント、設計上の制約、依存関係など。"
+      placeholder: "例: 関連 PR、API 制約、性能要件など。"
     validations:
       required: false

@@ -1,5 +1,5 @@
-name: 🗺️ Epic
-description: Use this template to describe a large body of work that spans multiple sprints and encompasses multiple PBIs.
+name: 🗺️ エピック
+description: 複数スプリントにまたがる大規模な取り組みを、複数の PBI として登録するためのテンプレートです。
 title: "[Epic] "
 labels:
   - epic
@@ -7,15 +7,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        Fill in the sections below to help the team — and AI assistants — understand the long-term goal, business impact, and completion criteria for this Epic.
+        以下を記入して、チームと AI 補助システムが本エピックの目的、事業への影響、完了条件を短時間で理解できるようにしてください。
 
   - type: textarea
     id: goal
     attributes:
       label: "🎯 Goal / Outcome"
-      description: "What is the long-term desired outcome of this Epic? Describe the end-state you are working toward."
+      description: "このエピックで最終的に目指す状態（成果）を記載してください。"
       placeholder: |
-        e.g. Enable customers to authenticate using social login providers (Google, GitHub) to reduce friction during sign-up and increase conversion rates.
+        例: ソーシャルログイン（Google/GitHub）導入で会員登録導線を改善し、CVR を引き上げる。
     validations:
       required: true
 
@@ -23,9 +23,9 @@ body:
     id: background
     attributes:
       label: "📖 Background & Context"
-      description: "Why is this Epic needed? What problem or opportunity does it address? Include any relevant strategy documents, prior discussions, or links."
+      description: "なぜこのエピックが必要か。背景の問題、機会、根拠情報を簡潔にまとめてください。"
       placeholder: |
-        e.g. Currently users must create a username/password account. Research shows 40% of users abandon sign-up at this step. Social login is a proven way to reduce this friction.
+        例: 現在は username/password での登録のみで、離脱率が高いため。ソーシャルログインは導線摩擦を下げる実績がある。
     validations:
       required: true
 
@@ -33,15 +33,15 @@ body:
     id: business-value
     attributes:
       label: "💼 Business Value & Success Metrics"
-      description: "What business value does this Epic deliver? How will success be measured? Define concrete, observable metrics."
+      description: "事業価値と成功指標を記載してください。測定可能な指標を具体的に。"
       placeholder: |
-        Business Value:
-        - Reduces sign-up abandonment by lowering friction for new users.
-        - Increases monthly active users by making onboarding faster.
+        事業価値:
+        - 新規登録の離脱を減らし、獲得効率を改善する。
+        - 初期導線の完了時間を短縮する。
 
-        Success Metrics:
-        - Sign-up conversion rate increases from X% to Y% within 30 days of launch.
-        - Support tickets related to account/password issues decrease by Z%.
+        成功指標:
+        - リリース 30 日後の新規登録完了率を X% → Y% に引き上げる。
+        - アカウント・パスワード関連の問い合わせ件数を Z% 削減する。
     validations:
       required: true
 
@@ -49,7 +49,7 @@ body:
     id: definition-of-done
     attributes:
       label: "✅ Definition of Done"
-      description: "List the conditions that must be met for this Epic to be considered complete. Include what is explicitly out of scope."
+      description: "エピック完了とみなす条件と、対象外（スコープ外）を明確に記載してください。"
       value: |
         ### In Scope
         - [ ] 
@@ -66,8 +66,8 @@ body:
     id: notes
     attributes:
       label: "📝 Additional Notes"
-      description: "Optional: dependencies, risks, technical constraints, architecture decisions, or anything else useful for planning."
+      description: "任意: 依存関係、リスク、技術制約、設計判断など、計画に必要な追加情報。"
       placeholder: |
-        e.g. Depends on the identity service being migrated to the new platform (Epic #100). Consult security team before choosing OAuth library.
+        例: 本番基盤の ID 連携移行（Epic #100）を前提とする。OAuth ライブラリ選定前にセキュリティ担当と確認する。
     validations:
       required: false

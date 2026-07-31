@@ -1,5 +1,5 @@
-name: ⚠️ Risk
-description: Use this template to register and manage project risks with likelihood, impact, and mitigation details.
+name: ⚠️ リスク
+description: リスクの発生確率、影響度、対策をまとめて管理するためのテンプレートです。
 title: "[Risk] "
 labels:
   - risk
@@ -7,14 +7,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Fill in the sections below to document the risk, evaluate severity, and track mitigation.
+        以下を記入し、リスクの内容と重要度、軽減アクションを明確化してください。
 
   - type: textarea
     id: risk-statement
     attributes:
       label: "🚨 Risk Statement"
-      description: "What could happen? Describe the risk event clearly in one sentence."
-      placeholder: "e.g. Sensitive data may be exposed if access control checks are bypassed in the new API endpoint."
+      description: "何が起きる可能性があるか、1文で明確に記述してください。"
+      placeholder: "例: 新しい API で権限チェックが欠けると機密データが漏洩する可能性がある。"
     validations:
       required: true
 
@@ -22,8 +22,8 @@ body:
     id: background
     attributes:
       label: "📖 Background & Context"
-      description: "Why is this risk relevant now? Include affected systems, assumptions, and links."
-      placeholder: "Describe where this risk comes from and what parts of the project are affected."
+      description: "このリスクが重要になる背景（対象システム、前提、参照情報）を記載してください。"
+      placeholder: "発生要因と影響範囲を明示してください。"
     validations:
       required: true
 
@@ -31,7 +31,7 @@ body:
     id: likelihood
     attributes:
       label: "🎲 Likelihood"
-      description: "How likely is this risk to occur?"
+      description: "このリスクが発生する可能性を評価してください。"
       options:
         - Low
         - Medium
@@ -43,7 +43,7 @@ body:
     id: impact
     attributes:
       label: "💥 Impact"
-      description: "If this occurs, how severe is the impact?"
+      description: "発生した場合の影響度を評価してください。"
       options:
         - Low
         - Medium
@@ -56,7 +56,7 @@ body:
     id: mitigation-plan
     attributes:
       label: "🛡️ Mitigation Plan"
-      description: "What actions will reduce the likelihood and/or impact?"
+      description: "発生確率や影響を下げるために取る対策をリスト化してください。"
       value: |
         - [ ] 
         - [ ] 
