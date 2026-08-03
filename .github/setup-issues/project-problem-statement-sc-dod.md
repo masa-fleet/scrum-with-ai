@@ -12,7 +12,7 @@ labels:
 ## 📖 Background & Context
 
 Problem Statement, Success Criteria, Definition of Done を最初に合意しておくことで、「何の課題を解くのか」「成功とは何か」「成功をどう測るか」についてチーム（TPM/PO、Dev、DS）とステークホルダーが共通認識を持てる。
-特に AI/DS を含むプロジェクトでは、精度指標や評価方法の合意が遅れるとスプリント終盤で手戻りが発生しやすいため、キックオフ直後に TPM、Dev Lead、DS Lead が揃って定義することが重要。
+特に AI/DS を含むプロジェクトでは、精度指標や評価方法の合意が遅れるとスプリント終盤で手戻りが発生しやすいため、ADS 直後に TPM、Dev Lead、DS Lead が揃って定義することが重要。
 
 ## ✅ Acceptance Criteria
 
@@ -28,7 +28,7 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 - 「誰が」「どんな課題に困っているか」「なぜ今解く必要があるか」を 1〜3 文で簡潔に書く。
 - 解決策（HOW）ではなく、課題（WHAT/WHY）にフォーカスする。
-- 定量的な現状値（例: 応答時間、精度、工数）があれば入れると Success Criteria との対応が取りやすい。
+- 定量的な As-Is KPI（例: 応答時間、精度、工数）があれば入れると Success Criteria との対応が取りやすい。
 
 **例**
 
@@ -39,13 +39,17 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 **コツ（TPM/PO 観点）**
 
 - プロジェクトの Success Criteria は、プロダクト全体の KPI（ビジネス指標）のどの部分をスコープにするかを明確にしてから設定する。
-- 1 つの Primary Metric（意思決定に使う指標）と、複数の Supporting Metric（詳細分析用の指標）に分けると優先順位がぶれない。
+- 1 つの Primary Metric（意思決定に使う指標、例: 検索段階の Recall）と、複数の Supporting Metric（詳細分析用の指標、例: AI 判定段階の F1、レスポンスタイム）に分けると優先順位がぶれない。
 - 「対応する」だけでなく「対応しない」ことも合意し、スコープの誤解を防ぐ。
 
 **コツ（Dev 観点）**
 
 - 機能要件（何ができるようになるか）と非機能要件（性能・スケーラビリティ・セキュリティなど）の両方を数値目標として書く。
-- 例: レイテンシ、可用性、同時アクセスユーザー数、セキュリティ要件（機密情報の非流出範囲など）。
+- プロダクト成熟度に応じた目標水準の目安:
+  - PoC: 機能実証優先、性能要件は緩め（例: レイテンシ < XX 秒）
+  - MVP: コア機能 + 基本的な性能要件（例: レイテンシ < X 秒、可用性 XX%）
+  - Production: 全機能 + 厳格な性能・セキュリティ要件（例: レイテンシ < XXX ms、可用性 XX.X%、同時接続 XXX 人）
+- 例: レイテンシ（< XXX ms）、可用性（XX.X%）、同時アクセスユーザー数（XXX 人規模）、セキュリティ要件（機密情報の非流出範囲など）。
 
 **コツ（DS 観点）**
 
@@ -82,6 +86,6 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 ## 📝 実施時期の目安
 
-- キックオフ〜Sprint -1 週（Sprint 0 相当）で TPM、Dev Lead、DS Lead が集まり、ドラフトを作成する。
+- Sprint 0 で TPM、Dev Lead、DS Lead が集まり、ドラフトを作成する。
 - Sprint 1 開始前にステークホルダーとレビュー・合意を完了させる。
 - プロジェクト途中でスコープや前提が変わった場合は、都度更新し変更履歴を残す。
