@@ -27,6 +27,6 @@ AI がここに保存された要件を参照してインフラ設計や IaC に
 
 ## 📝 参考
 
-- [Azure Well-Architected Framework — 信頼性](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/overview)
+- [Azure Well-Architected Framework — 信頼性](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/)
 
 まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/reliability.md` を作成します。

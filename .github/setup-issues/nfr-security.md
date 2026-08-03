@@ -27,7 +27,7 @@ AI がここに保存された要件を参照してアーキテクチャ設計�
 
 ## 📝 参考
 
-- [Azure Well-Architected Framework — セキュリティ](https://learn.microsoft.com/ja-jp/azure/well-architected/security/overview)
+- [Azure Well-Architected Framework — セキュリティ](https://learn.microsoft.com/ja-jp/azure/well-architected/security/)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
 まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/security.md` を作成します。

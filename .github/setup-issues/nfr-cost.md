@@ -26,7 +26,7 @@ AI がここに保存された要件を参照してコスト試算や IaC 設計
 
 ## 📝 参考
 
-- [Azure Well-Architected Framework — コスト最適化](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/overview)
+- [Azure Well-Architected Framework — コスト最適化](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/)
 - [Azure Cost Management](https://learn.microsoft.com/ja-jp/azure/cost-management-billing/costs/overview-cost-management)
 
 まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/cost.md` を作成します。

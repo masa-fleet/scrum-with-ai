@@ -27,6 +27,6 @@ AI がここに保存された要件を参照して技術選定やインフラ�
 
 ## 📝 参考
 
-- [Azure Well-Architected Framework — パフォーマンス効率](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/overview)
+- [Azure Well-Architected Framework — パフォーマンス効率](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/)
 
 まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/performance.md` を作成します。
