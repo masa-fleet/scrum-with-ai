@@ -28,3 +28,24 @@
 - 5 分: オープニングと Sprint Goal 再確認
 - 50 分: 完了 PBI のデモ、受け入れ確認、フィードバック収集
 - 5 分: クロージング
+
+## Daily Standup（15 分 / 平日）
+
+- ファシリテーター: Scrum Master
+- 参加者: Dev / DS（必須）
+- 10 分: 進捗共有（前日からの変化）
+- 5 分: Blocker 共有と当日対応の確認
+
+## Retrospective（45 分）
+
+- ファシリテーター: Scrum Master
+- 参加者: Scrum Team 全員
+- 20 分: うまくいったことの整理
+- 20 分: 改善点の整理
+- 5 分: 次 Sprint に持ち込むアクション決定
+
+## PO Office Hour（Optional / 45 分）
+
+- ファシリテーター: PO
+- 参加者: PO + 相談したい Scrum Team メンバー（任意）
+- 45 分: Product に関する質問・相談
