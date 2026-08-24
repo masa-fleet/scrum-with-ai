@@ -35,6 +35,8 @@
 
 - ユーザー レポジトリ作成後、作成されたセットアップ用 Issue を起点に初期設定を進める
 - Epic・PBI・Task・Risk の関係と Issue Template の使い分けは [docs/issue-templates.md](docs/issue-templates.md) を参照する
+- PBI のステータス定義と更新リズムは [docs/backlog-management.md](docs/backlog-management.md) を参照する
+- セレモニーごとのアジェンダ例は [docs/scrum-ceremonies-agenda.md](docs/scrum-ceremonies-agenda.md) を参照する
 - ラベル作成やブランチポリシー設定などの詳細は [docs/setup.md](docs/setup.md) を参照する
 
 ### 3. ユーザー レポジトリの README を更新する
