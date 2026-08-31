@@ -1,14 +1,14 @@
-# Copilot Instructions
+# Copilot 指示
 
-This repo is an AI-assisted Scrum template. All code, docs, and issues are authored by Copilot — humans only review and approve.
+このリポジトリは、AI 支援による Scrum テンプレートです。すべてのコード、ドキュメント、Issue は Copilot が作成し、人間はレビューと承認のみを行います。
 
-## Core Principles
+## 基本原則
 
-- Follow existing file and folder conventions in the repo.
+- リポジトリ内の既存のファイルおよびフォルダー規約に従ってください。
 
-## Non-Functional Requirements
+## 非機能要件
 
-NFR documents are stored in `docs/nfr/`. Reference them when designing architecture, estimating costs, writing IaC, or reviewing code for security/reliability/performance concerns.
+NFR ドキュメントは `docs/nfr/` に保存されています。アーキテクチャ設計、コスト見積もり、IaC の作成、セキュリティ・信頼性・パフォーマンスに関するコードレビューでは、必ず参照してください。
 
 - `docs/nfr/security.md` — 認証・認可・暗号化・コンプライアンス要件
 - `docs/nfr/performance.md` — レスポンスタイム・スループット・スケーリング要件
@@ -16,7 +16,7 @@ NFR documents are stored in `docs/nfr/`. Reference them when designing architect
 - `docs/nfr/reliability.md` — 可用性・RTO/RPO・バックアップ・フェイルオーバー要件
 - `docs/nfr/operational-excellence.md` — ロギング・監視・デプロイ・オンコール要件
 
-## Output Guidelines
+## 出力ガイドライン
 
-- **Markdown files:** See `markdown.instructions.md` for specific rules.
-- **Comments/Suggestions:** Be direct. State what to change and why in one sentence.
+- **Markdown ファイル:** 詳細な規則は `markdown.instructions.md` を参照してください。
+- **コメント・提案:** 直接的に記述し、変更内容と理由を一文で示してください。
