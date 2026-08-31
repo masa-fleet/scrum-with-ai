@@ -12,7 +12,7 @@ labels:
 ## 📖 Background & Context
 
 Problem Statement, Success Criteria, Definition of Done を最初に合意しておくことで、「何の課題を解くのか」「成功とは何か」「成功をどう測るか」についてチーム（TPM/PO、Dev、DS）とステークホルダーが共通認識を持てる。
-特に AI/DS を含むプロジェクトでは、精度指標や評価方法の合意が遅れるとスプリント終盤で手戻りが発生しやすいため、ADS 直後に TPM、Dev Lead、DS Lead が揃って定義することが重要。
+特に AI/DS を含むプロジェクトでは、精度指標や評価方法の合意が遅れるとスプリント終盤で手戻りが発生しやすいため、ADS 中に TPM、Dev Lead、DS Lead が揃って定義・合意することが重要。
 
 ## ✅ Acceptance Criteria
 
