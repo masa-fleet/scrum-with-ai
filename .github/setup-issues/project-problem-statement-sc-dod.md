@@ -18,7 +18,7 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 - [ ] Problem Statement, Success Criteria, Definition of Done が定義され、`docs/project` フォルダ配下に **1 つの markdown ファイル**（例: `docs/project/problem-statement-sc-dod.md`）として保存されている
 - [ ] Success Criteria、Definition of Done には Dev（機能・非機能要件）と DS（精度・評価指標・モデル訓練等）両方の観点が含まれている
-- [ ] Success Criteria は測定可能な指標（KPI）として定義可能な項目は定義する（Optional）。ビジネス KPI との紐付けが分かるとより望ましい
+- [ ] Success Criteria は測定可能な指標（KPI）として定義し、ビジネス KPI との紐付けを明記する
 - [ ] それぞれが担当するドメイン(Dev Lead or DS Lead)とTPMが内容をレビューし、合意が取れている
 - [ ] スコープ外（対応しないこと）も明示されている
 
