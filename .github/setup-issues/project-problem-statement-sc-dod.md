@@ -91,6 +91,7 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 ## 📝 実施時期の目安
 
-- Sprint 0 で TPM、Dev Lead、DS Lead が集まり、ドラフトを作成する。
-- Sprint 1 開始前にステークホルダーとレビュー・合意を完了させる。
+- ADS までに TPM、Dev Lead、DS Lead がドラフトを作成する。
+- ADS でお客様と内容をレビューし、合意を取る。
+- Sprint 1 の Backlog 優先度は ADS での合意内容をもとに確定する。
 - プロジェクト途中でスコープや前提が変わった場合は、都度更新し変更履歴を残す。
