@@ -22,6 +22,14 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 - [ ] それぞれが担当するドメイン(Dev Lead or DS Lead)とTPMが内容をレビューし、合意が取れている
 - [ ] スコープ外（対応しないこと）も明示されている
 
+## 📖 PS / SC / DoD の定義
+
+| 項目 | 簡潔な定義 |
+|---|---|
+| **Problem Statement** | プロジェクトで解決したいビジネス課題と、その課題を解決する価値を説明するもの。なぜこのプロジェクトを行うのか（Why）。 |
+| **Success Criteria** | ステークホルダーが「このプロジェクトは成功した」と判断できる状態や成果。高レベルなビジネスゴール（What）。 |
+| **Definition of Done（DoD）** | Success Criteria が達成されたことを客観的に確認できる、具体的な条件・指標・成果物。測定可能な完了条件（How do we know it's done?）。 |
+
 ## 📝 1. Problem Statement を書く
 
 **コツ**
