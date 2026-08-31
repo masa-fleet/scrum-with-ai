@@ -41,7 +41,7 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 **例**
 
-> ドライバーが Agent を通して車両操作できず、Agent からの発話・車両操作が無いことでプロダクトならではの価値を提供できていない。
+> ドライバーが Agent を通じて車両操作やナビゲーション変更を行いたいが、音声指示に対して Agent が応答・操作を実行しないため、運転中に手動操作を余儀なくされている。
 
 ## 📝 2. Success Criteria を書く
 
