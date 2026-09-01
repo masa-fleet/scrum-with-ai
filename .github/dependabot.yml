@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # npm/Node.js パッケージの更新確認
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "haonuma"
+    assignees:
+      - "haonuma"
+    labels:
+      - "dependencies"
+      - "dependabot"
+
+  # GitHub Actions のアップデート確認
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "haonuma"
+    assignees:
+      - "haonuma"
+    labels:
+      - "dependencies"
+      - "dependabot"
