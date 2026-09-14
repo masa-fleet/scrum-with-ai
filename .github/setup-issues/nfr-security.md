@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトのセキュリティ要件を整理し、`docs/nfr/security.md` に保存する。
+プロジェクトのセキュリティ要件を整理し、`docs/users/nfr/security.md` に保存する。
 
 ## 📖 Background & Context
 
@@ -26,7 +26,7 @@ AI がここに保存された要件を参照してアーキテクチャ設計�
 - [ ] [SE:09](https://learn.microsoft.com/ja-jp/azure/well-architected/security/application-secrets) シークレット管理方式（例: Azure Key Vault、GitHub Secrets）が決定されている
 - [ ] [SE:10](https://learn.microsoft.com/ja-jp/azure/well-architected/security/monitor-threats) 脅威の検知・アラートと、セキュリティ運用チームへの連携方針が定義されている
 - [ ] [SE:12](https://learn.microsoft.com/ja-jp/azure/well-architected/security/incident-response) セキュリティインシデント対応フロー（検知 → 通知 → 封じ込め → 回復）が定義されている
-- [ ] 整理された内容が `docs/nfr/security.md` に保存されている
+- [ ] 整理された内容が `docs/users/nfr/security.md` に保存されている
 
 ## 📝 参考
 
@@ -34,4 +34,4 @@ AI がここに保存された要件を参照してアーキテクチャ設計�
 - [セキュリティ設計レビューチェックリスト](https://learn.microsoft.com/ja-jp/azure/well-architected/security/checklist)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
-まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/security.md` を作成します。
+まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/users/nfr/security.md` を作成します。

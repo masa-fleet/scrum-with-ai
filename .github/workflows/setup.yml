@@ -1,7 +1,7 @@
 name: 🚀 Setup Repository
 
 # This workflow is intended to run ONCE when this template repository is first copied.
-# It creates all standard labels defined in docs/labels.md and opens the Project Board
+# It creates all standard labels defined in docs/users/policies/labels.md and opens the Project Board
 # setup issue (.github/setup-issues/github-project-board.md). The remaining setup issues
 # are created afterwards by setup-remaining-issues.yml, once that issue is closed — see
 # that workflow for why they can't all be created up front.

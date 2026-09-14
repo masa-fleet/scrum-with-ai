@@ -12,26 +12,26 @@
 
 ## Step 2 — Issue ラベルを作成する
 
-テンプレート レポジトリには[標準ラベル](labels.md)を一括作成するワークフローが含まれているので、自動作成されます。もし自動作成されない場合には、以下の手順をお試しください。
+テンプレート レポジトリには[標準ラベル](../policies/labels.md)を一括作成するワークフローが含まれているので、自動作成されます。もし自動作成されない場合には、以下の手順をお試しください。
 
 1. ユーザー リポジトリの **Actions** タブを開く
 2. 左サイドバーで **🚀 Setup Repository** を選択
 3. **Run workflow → Run workflow** をクリック（ブランチは `main` のまま）
 
-   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup.yml)
+   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../../actions/workflows/setup.yml)
 
 4. 実行完了を待つ（通常 30 秒以内）。すべてのラベルが作成され、ワークフローは**自動的に無効化**される
 
 > **ラベルを再作成したい場合：**
 > **Actions → 🚀 Setup Repository** のワークフローの三点メニューから **Enable workflow** を選択し、再度実行する。
 
-Issue Template の選び方や Epic・PBI・Task・Risk の関係は [issue-templates.md](issue-templates.md) を参照。
+Issue Template の選び方や Epic・PBI・Task・Risk の関係は [issue-templates.md](../policies/issue-templates.md) を参照。
 
 ---
 
 ## Step 3 — ブランチポリシーを適用する
 
-[branch-policy.md](branch-policy.md) に定義されたブランチルールセットで `main` を保護する。
+[branch-policy.md](../policies/branch-policy.md) に定義されたブランチルールセットで `main` を保護する。
 
 > **注意：** ブランチ保護設定はテンプレート レポジトリから自動的に継承されない。新しいユーザー レポジトリごとに手動で設定する必要がある。
 
@@ -47,4 +47,4 @@ Issue Template の選び方や Epic・PBI・Task・Risk の関係は [issue-temp
 | `epic` | `epic` |
 | `risk` | `risk` |
 
-ラベルの一覧と使い方は [labels.md](labels.md) を参照。
+ラベルの一覧と使い方は [labels.md](../policies/labels.md) を参照。

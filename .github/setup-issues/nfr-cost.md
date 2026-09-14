@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトのコスト要件・制約を整理し、`docs/nfr/cost.md` に保存する。
+プロジェクトのコスト要件・制約を整理し、`docs/users/nfr/cost.md` に保存する。
 
 ## 📖 Background & Context
 
@@ -25,7 +25,7 @@ AI がここに保存された要件を参照してコスト試算や IaC 設計
 - [ ] [CO:08](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/optimize-environment-costs) 開発・ステージング・本番環境のコスト按分方針が決定されている
 - [ ] [CO:10](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/optimize-data-costs) データの保存期間・階層・複製・バックアップを考慮したコスト最適化方針が定義されている
 - [ ] [CO:12](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/optimize-scaling-costs) スケーリング方式と上限がコストモデルに沿って決定されている
-- [ ] 整理された内容が `docs/nfr/cost.md` に保存されている
+- [ ] 整理された内容が `docs/users/nfr/cost.md` に保存されている
 
 ## 📝 参考
 
@@ -33,4 +33,4 @@ AI がここに保存された要件を参照してコスト試算や IaC 設計
 - [コスト最適化設計レビューチェックリスト](https://learn.microsoft.com/ja-jp/azure/well-architected/cost-optimization/checklist)
 - [Azure Cost Management](https://learn.microsoft.com/ja-jp/azure/cost-management-billing/costs/overview-cost-management)
 
-まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/cost.md` を作成します。
+まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/users/nfr/cost.md` を作成します。

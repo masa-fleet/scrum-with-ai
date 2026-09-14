@@ -33,6 +33,11 @@
 - タイトルは明確に記載する。
 - Issue Template の必須項目を記入する。
 
+## ドキュメントのルール
+
+- 文書の追加・移動時は [文書配置ガイド](docs/README.md) に従う。
+- プルリクエストでは、配置先、重複、リンク切れを確認する。
+
 ## 行動規範
 
 - [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/) に従う。
