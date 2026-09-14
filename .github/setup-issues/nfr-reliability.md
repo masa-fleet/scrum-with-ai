@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトの信頼性要件を整理し、`docs/nfr/reliability.md` に保存する。
+プロジェクトの信頼性要件を整理し、`docs/users/nfr/reliability.md` に保存する。
 
 ## 📖 Background & Context
 
@@ -25,11 +25,11 @@ AI がここに保存された要件を参照してインフラ設計や IaC に
 - [ ] [RE:08](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/reliability-test) 障害・高負荷・復旧シナリオを対象とした信頼性テスト方針が定義されている
 - [ ] [RE:09](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/disaster-recovery) バックアップ方針（頻度・保持期間・世代数）が定義されている
 - [ ] [RE:10](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/monitoring) 障害検知・アラート方針（モニタリング対象・通知先）が決定されている
-- [ ] 整理された内容が `docs/nfr/reliability.md` に保存されている
+- [ ] 整理された内容が `docs/users/nfr/reliability.md` に保存されている
 
 ## 📝 参考
 
 - [Azure Well-Architected Framework — 信頼性](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/)
 - [信頼性設計レビューチェックリスト](https://learn.microsoft.com/ja-jp/azure/well-architected/reliability/checklist)
 
-まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/reliability.md` を作成します。
+まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/users/nfr/reliability.md` を作成します。

@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトのパフォーマンス要件を整理し、`docs/nfr/performance.md` に保存する。
+プロジェクトのパフォーマンス要件を整理し、`docs/users/nfr/performance.md` に保存する。
 
 ## 📖 Background & Context
 
@@ -25,11 +25,11 @@ AI がここに保存された要件を参照して技術選定やインフラ�
 - [ ] [PE:04](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/monitoring) 性能メトリクス、基準値、継続的な測定方法が定義されている
 - [ ] [PE:06](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/performance-test) パフォーマンステスト方針（負荷テスト・スパイクテストの頻度・ツール）が決定されている
 - [ ] [PE:09](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/prioritize-critical-flows) 性能を優先する重要なユーザーフローとシステムフローが定義されている
-- [ ] 整理された内容が `docs/nfr/performance.md` に保存されている
+- [ ] 整理された内容が `docs/users/nfr/performance.md` に保存されている
 
 ## 📝 参考
 
 - [Azure Well-Architected Framework — パフォーマンス効率](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/)
 - [パフォーマンス効率設計レビューチェックリスト](https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/checklist)
 
-まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/performance.md` を作成します。
+まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/users/nfr/performance.md` を作成します。

@@ -23,5 +23,5 @@
 
 1. **Settings → Rules → Rulesets** を開く
 2. **New ruleset → Import a ruleset** をクリック
-3. [`.github/branch-policy-template.json`](../.github/branch-policy-template.json) をアップロード
+3. [`.github/branch-policy-template.json`](../../../.github/branch-policy-template.json) をアップロード
 4. 設定を確認して **Create** をクリック

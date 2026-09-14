@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトの運用要件（ロギング・監視・デプロイ・インシデント管理）を整理し、`docs/nfr/operational-excellence.md` に保存する。
+プロジェクトの運用要件（ロギング・監視・デプロイ・インシデント管理）を整理し、`docs/users/nfr/operational-excellence.md` に保存する。
 
 ## 📖 Background & Context
 
@@ -28,11 +28,11 @@ AI がここに保存された要件を参照して CI/CD 設計や IaC に活�
 - [ ] [OE:08](https://learn.microsoft.com/ja-jp/azure/well-architected/operational-excellence/incident-response) オンコール体制とエスカレーションフローが定義されている
 - [ ] [OE:09](https://learn.microsoft.com/ja-jp/azure/well-architected/operational-excellence/testing) 必要なテスト種別、品質基準、実施タイミングが定義されている
 - [ ] [OE:11](https://learn.microsoft.com/ja-jp/azure/well-architected/operational-excellence/safe-deployments) デプロイ戦略（例: Blue/Green、カナリア、ローリングアップデート）が決定されている
-- [ ] 整理された内容が `docs/nfr/operational-excellence.md` に保存されている
+- [ ] 整理された内容が `docs/users/nfr/operational-excellence.md` に保存されている
 
 ## 📝 参考
 
 - [Azure Well-Architected Framework — オペレーショナルエクセレンス](https://learn.microsoft.com/ja-jp/azure/well-architected/operational-excellence/)
 - [オペレーショナルエクセレンス設計レビューチェックリスト](https://learn.microsoft.com/ja-jp/azure/well-architected/operational-excellence/checklist)
 
-まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/nfr/operational-excellence.md` を作成します。
+まずはこの Issue のコメント欄に決定事項や未決事項を書き込んでください。最終的に Copilot がコメントをもとに `docs/users/nfr/operational-excellence.md` を作成します。

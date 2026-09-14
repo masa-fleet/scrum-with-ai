@@ -7,7 +7,7 @@ labels:
 
 ## 🎯 Goal
 
-プロジェクトレベルの Problem Statement（課題）、Success Criteria（成功基準）、Definition of Done（完了の定義）を定義し、`docs/project` フォルダ配下に **1 つの markdown ファイル**として保存する（例: `docs/project/problem-statement-sc-dod.md`）。
+プロジェクトレベルの Problem Statement（課題）、Success Criteria（成功基準）、Definition of Done（完了の定義）を定義し、`docs/users/project/` フォルダ配下に **1 つの markdown ファイル**として保存する（例: `docs/users/project/problem-statement-sc-dod.md`）。
 
 ## 📖 Background & Context
 
@@ -16,7 +16,7 @@ Problem Statement, Success Criteria, Definition of Done を最初に合意して
 
 ## ✅ Acceptance Criteria
 
-- [ ] Problem Statement, Success Criteria, Definition of Done が定義され、`docs/project` フォルダ配下に **1 つの markdown ファイル**（例: `docs/project/problem-statement-sc-dod.md`）として保存されている
+- [ ] Problem Statement, Success Criteria, Definition of Done が定義され、`docs/users/project/` フォルダ配下に **1 つの markdown ファイル**（例: `docs/users/project/problem-statement-sc-dod.md`）として保存されている
 - [ ] Success Criteria、Definition of Done には Dev（機能・非機能要件）と DS（精度・評価指標・モデル訓練等）両方の観点が含まれている
 - [ ] Success Criteria は測定可能な指標（KPI）として定義し、ビジネス KPI との紐付けを明記する
 - [ ] それぞれが担当するドメイン(Dev Lead or DS Lead)とTPMが内容をレビューし、合意が取れている
