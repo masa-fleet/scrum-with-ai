@@ -1,24 +1,24 @@
 ---
 name: create-pbi
-description: Create and register a GitHub Project PBI from a short request.
+description: 短い要望から GitHub Project に PBI を作成・登録する。
 ---
 
-# Create PBI
+# PBI を作成する
 
-Create a PBI from the user's request and register it in the linked GitHub Project.
+ユーザーの要望から PBI を作成し、リポジトリにリンクされた GitHub Project に登録する。
 
-## Instructions
+## 手順
 
-1. Read `.github/ISSUE_TEMPLATE/pbi.yml` and use its field descriptions as the source of truth.
-2. Read only the repository files needed to understand the request. Check existing Issues for duplicates.
-3. Resolve the repository owner/name with `gh repo view --json nameWithOwner`.
-4. Resolve the Project linked to the repository with GraphQL (`repository.projectsV2`). Do not hard-code Project IDs.
-5. Ask only for missing information required to write a useful PBI. Otherwise, draft the title and body.
-6. Show the draft and ask for one confirmation before creating anything.
-7. After confirmation:
-   - Create the Issue with `gh issue create --label pbi`.
-   - Add it to the linked Project with `gh project item-add`.
-   - Set the requested Sprint and `New` Status using Project field names and option values.
-8. Report the Issue URL and the final Project fields. If a mutation fails, report the error and do not claim completion.
+1. `.github/ISSUE_TEMPLATE/pbi.yml` を読み、項目の説明を唯一の基準にする。
+2. 要望の理解に必要なファイルだけを読み、既存 Issue の重複を確認する。
+3. `gh repo view --json nameWithOwner` でリポジトリの Owner / Name を取得する。
+4. GraphQL の `repository.projectsV2` でリポジトリにリンクされた Project を取得する。Project ID はハードコードしない。
+5. PBI 作成に必要な情報が不足している場合だけ質問する。それ以外はタイトルと本文の案を作成する。
+6. 作成前に案を表示し、1 回だけ確認を求める。
+7. 確認後に以下を実行する。
+   - `gh issue create --label pbi` で Issue を作成する。
+   - `gh project item-add` でリンクされた Project に追加する。
+   - Project のフィールド名と選択肢を使い、指定された Sprint と `New` Status を設定する。
+8. Issue URL と最終的な Project の値を報告する。変更処理に失敗した場合は、完了したと報告せずエラーを示す。
 
-Keep the response and generated PBI concise. Do not copy the PBI field guidance into this Skill; maintain it in `.github/ISSUE_TEMPLATE/pbi.yml`.
+応答と生成する PBI は簡潔にする。PBI 項目の説明を Skill に重複して書かず、`.github/ISSUE_TEMPLATE/pbi.yml` で管理する。
