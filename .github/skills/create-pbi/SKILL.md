@@ -5,7 +5,7 @@ description: 短い要望から GitHub に PBI を作成・登録する。
 
 # PBI を作成する
 
-ユーザーの要望から PBI を作成し、リポジトリにリンクされた GitHub Project に登録する。
+短い要望から GitHub に PBI を作成・登録する。
 
 ## 手順
 
@@ -19,7 +19,7 @@ description: 短い要望から GitHub に PBI を作成・登録する。
 8. 確認後に以下を実行する。
    - `gh issue create --label pbi` で Issue を作成する。
    - リポジトリの自動追加設定で Issue がリンクされた Project に追加されるのを確認する。
-   - Project のフィールド名と選択肢を使い、指定された Sprint と `New` Status を設定する。
-9. Issue URL と最終的な Project の値を報告する。変更処理に失敗した場合は、完了したと報告せずエラーを示す。
+   - Project のフィールド名と選択肢を使い、指定された Sprint を設定する。
+9. Issue URL と挿入した Sprint を報告する。変更処理に失敗した場合は、完了したと報告せずエラーを示す。
 
 応答と生成する PBI は簡潔にする。
