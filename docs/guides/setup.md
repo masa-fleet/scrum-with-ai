@@ -18,7 +18,7 @@
 2. 左サイドバーで **🚀 Setup Repository** を選択
 3. **Run workflow → Run workflow** をクリック（ブランチは `main` のまま）
 
-   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../../actions/workflows/setup.yml)
+   [![Run workflow button](https://img.shields.io/badge/Actions-Run%20workflow-2088FF?logo=github-actions&logoColor=white)](../../actions/workflows/setup.yml)
 
 4. 実行完了を待つ（通常 30 秒以内）。すべてのラベルが作成され、ワークフローは**自動的に無効化**される
 
