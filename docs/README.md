@@ -33,7 +33,6 @@
 | `users/processes/` | `backlog-management.md`、`scrum-accountabilities.md`、`scrum-ceremonies-agenda.md` | ユーザー リポジトリで繰り返し使う Scrum プロセス |
 | `users/policies/` | `branch-policy.md`、`issue-templates.md`、`labels.md` | ユーザー リポジトリで適用する規則と標準 |
 | `users/guides/` | `setup.md`、`azure-learning-guide.md` | ユーザー向けの作業手順と学習資料 |
-| `contributors/guides/` | `github-security-features.md` | テンプレート自体の保守に使う機能選定資料 |
 
 - 重複: `setup.md` は規則の詳細を持たず、各ポリシーを参照するため重複なし。
 - 分類上の課題: 解消済み。読者と文書種別の両方で配置を判断できる。
@@ -69,5 +68,5 @@
 
 - `users/architecture/` と `users/operations/` の文書作成。成果物が必要になった時点で追加する。
 - セットアップ Issue によりユーザー リポジトリで作成される `users/project/` と `users/nfr/` の初期文書。
-- `contributors/guides/github-security-features.md` と `users/guides/azure-learning-guide.md` の内容更新。
+- `users/guides/azure-learning-guide.md` の内容更新。
 - 実プロジェクト経験者とのレビューで得られる追加知見。レビュー後に別 Issue で反映する。
