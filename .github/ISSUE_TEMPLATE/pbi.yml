@@ -34,7 +34,7 @@ body:
     id: acceptance-criteria
     attributes:
       label: "✅ Acceptance Criteria"
-      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes. Focus on WHAT outcomes are expected, and avoid describing HOW to implement them."
+      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes. Focus on WHAT outcomes are expected, and avoid describing HOW to implement them. Keep the list to about five criteria. Each criterion must state the output format and storage location. If more than five criteria are needed and the PBI Estimate is greater than 8, split the PBI."
       placeholder: |
         - [ ] Users can request a password reset from the sign-in page.
         - [ ] Users receive a valid reset email and can set a new password.
