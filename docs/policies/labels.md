@@ -58,4 +58,4 @@ This document defines the standard labels used in this repository. These labels 
 
 ## Setting Up Labels
 
-Labels are created by running the one-time setup workflow. See the **[setup guide](setup.md)** for step-by-step instructions including how to trigger the workflow from the Actions tab.
+Labels are created by running the one-time setup workflow. See the **[setup guide](../guides/setup.md)** for step-by-step instructions including how to trigger the workflow from the Actions tab.
