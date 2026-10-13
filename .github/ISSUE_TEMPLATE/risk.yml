@@ -1,5 +1,5 @@
 name: ⚠️ Risk
-description: Use this template to register and manage project risks with likelihood, impact, and mitigation details.
+description: プロジェクトのリスクを、発生可能性、影響度、軽減策とともに登録・管理します。
 title: "[Risk] "
 labels:
   - risk
@@ -7,56 +7,56 @@ body:
   - type: markdown
     attributes:
       value: |
-        Fill in the sections below to document the risk, evaluate severity, and track mitigation.
+        リスクの記録、重大度の評価、軽減策の追跡に必要な以下の項目を入力してください。この Issue は Epic / PBI / Task の親子関係には含まれません。
 
   - type: textarea
     id: risk-statement
     attributes:
-      label: "🚨 Risk Statement"
-      description: "What could happen? Describe the risk event clearly in one sentence."
-      placeholder: "e.g. Sensitive data may be exposed if access control checks are bypassed in the new API endpoint."
+      label: "🚨 リスク内容"
+      description: "何が起こる可能性がありますか？リスク事象を一文で明確に記述してください。"
+      placeholder: "例: 新しい API エンドポイントでアクセス制御の確認が回避された場合、機密データが漏えいする可能性がある。"
     validations:
       required: true
 
   - type: textarea
     id: background
     attributes:
-      label: "📖 Background & Context"
-      description: "Why is this risk relevant now? Include affected systems, assumptions, and links."
-      placeholder: "Describe where this risk comes from and what parts of the project are affected."
+      label: "📖 背景・コンテキスト"
+      description: "なぜ今このリスクへの対応が必要ですか？影響を受けるシステム、前提条件、関連リンクを記述してください。"
+      placeholder: "このリスクが生じる理由と、影響を受けるプロジェクトの範囲を記述してください。"
     validations:
       required: true
 
   - type: dropdown
     id: likelihood
     attributes:
-      label: "🎲 Likelihood"
-      description: "How likely is this risk to occur?"
+      label: "🎲 発生可能性"
+      description: "このリスクが発生する可能性を選択してください。"
       options:
-        - Low
-        - Medium
-        - High
+        - 低
+        - 中
+        - 高
     validations:
       required: true
 
   - type: dropdown
     id: impact
     attributes:
-      label: "💥 Impact"
-      description: "If this occurs, how severe is the impact?"
+      label: "💥 影響度"
+      description: "このリスクが発生した場合の影響度を選択してください。"
       options:
-        - Low
-        - Medium
-        - High
-        - Critical
+        - 低
+        - 中
+        - 高
+        - 致命的
     validations:
       required: true
 
   - type: textarea
     id: mitigation-plan
     attributes:
-      label: "🛡️ Mitigation Plan"
-      description: "What actions will reduce the likelihood and/or impact?"
+      label: "🛡️ 軽減策"
+      description: "発生可能性や影響度を下げるために実施する対策を記述してください。"
       value: |
         - [ ] 
         - [ ] 

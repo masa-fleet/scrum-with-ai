@@ -1,5 +1,5 @@
 name: 📋 Product Backlog Item (PBI)
-description: Use this template to describe a new product backlog item for the Scrum team.
+description: Scrum Team の新しい PBI を記述します。
 title: "[PBI] "
 labels:
   - pbi
@@ -8,37 +8,37 @@ body:
     attributes:
       value: |
         ## Product Backlog Item
-        Fill in the sections below to help the team — and AI assistants — quickly understand what needs to be built and why.
+        チームと AI アシスタントが、作るものとその理由をすぐに理解できるよう、以下の項目を入力してください。
 
   - type: textarea
     id: goal
     attributes:
-      label: "🎯 Goal"
-      description: "What outcome should be achieved when this PBI is done? Focus on WHAT to deliver."
+      label: "🎯 ゴール"
+      description: "この PBI の完了時に達成すべき成果は何ですか？実現方法ではなく、提供するものに焦点を当ててください。"
       placeholder: |
-        e.g. Enable users to reset their password by email so they can recover account access without support help.
+        例: ユーザーがメールでパスワードをリセットでき、サポートの支援なしでアカウントへのアクセスを回復できる。
     validations:
       required: true
 
   - type: textarea
     id: background
     attributes:
-      label: "📖 Background & Context"
-      description: "Why is this needed now? Explain the problem, impact, and any useful links/context."
+      label: "📖 背景・コンテキスト"
+      description: "なぜ今これが必要ですか？課題、影響、参考になるリンクやコンテキストを記述してください。"
       placeholder: |
-        e.g. Users who forget passwords cannot log in, which increases support tickets and causes drop-off.
+        例: パスワードを忘れたユーザーがログインできず、サポートチケットの増加と離脱につながっている。
     validations:
       required: true
 
   - type: textarea
     id: acceptance-criteria
     attributes:
-      label: "✅ Acceptance Criteria"
-      description: "List the conditions that must be met for this PBI to be considered done. Use checkboxes. Focus on WHAT outcomes are expected, and avoid describing HOW to implement them. Keep the list to about five criteria. Each criterion must state the output format and storage location. If more than five criteria are needed and the PBI Estimate is greater than 8, split the PBI."
+      label: "✅ 受け入れ条件"
+      description: "この PBI の完了に必要な条件をチェックボックスで列挙してください。実装方法ではなく、期待する成果に焦点を当てます。5 項目程度に収め、各項目に出力形式と保存場所を明記してください。5 項目を超え、PBI の Estimate が 8 より大きい場合は PBI を分割してください。"
       placeholder: |
-        - [ ] Users can request a password reset from the sign-in page.
-        - [ ] Users receive a valid reset email and can set a new password.
-        - [ ] Users can sign in successfully with the updated password.
+        - [ ] ユーザーがサインイン画面からパスワードのリセットを要求できる。
+        - [ ] ユーザーが有効なリセットメールを受信し、新しいパスワードを設定できる。
+        - [ ] ユーザーが更新後のパスワードで正常にサインインできる。
       value: |
         - [ ] 
         - [ ] 
@@ -49,8 +49,8 @@ body:
   - type: textarea
     id: notes
     attributes:
-      label: "📝 Additional Notes"
-      description: "Optional: technical hints, design constraints, dependencies, or anything useful for AI-assisted planning."
-      placeholder: "e.g. related PRs, API constraints, performance requirements, etc."
+      label: "📝 補足"
+      description: "任意: 技術的なヒント、設計上の制約、依存関係など、AI を活用した計画に役立つ情報を記述してください。"
+      placeholder: "例: 関連する PR、API の制約、パフォーマンス要件など。"
     validations:
       required: false

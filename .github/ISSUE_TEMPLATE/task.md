@@ -1,6 +1,6 @@
 ---
 name: 🛠️ Task
-about: Create a task for a Product Backlog Item (PBI).
+about: PBI を進めるための具体的な Task を作成します。
 title: "[Task] "
 labels:
   - task
